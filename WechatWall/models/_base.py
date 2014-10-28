@@ -22,4 +22,7 @@ def init_db():
     # you will have to import them first before calling init_db()
     import WechatWall.models
     from WechatWall.models._base import Base
-    Base.metadata.create_all(bind=engine)
+    try:
+        Base.metadata.create_all(bind=engine)
+    except Exception as e:
+        print e
