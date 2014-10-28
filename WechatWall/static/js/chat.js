@@ -29,6 +29,8 @@ var updater = {
 
     showMessage: function(message) {
         console.log(message);
-        $(".content").append("<p>"+message+"</p>");
+        if(message.type=="message"){
+            $(".content").append("<p>"+message.message+"</p>");
+        }
     }
 };

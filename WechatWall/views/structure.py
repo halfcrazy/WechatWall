@@ -10,9 +10,9 @@ class SyncPosition(object):
 
 
 class SyncData(object):
-    def __init__(self):
+    def __init__(self,message):
         self.type="message"
-        self.message=""
+        self.message=message
 
 
 class InitData(object):
