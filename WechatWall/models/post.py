@@ -6,8 +6,8 @@ import datetime
 from sqlalchemy import Column, Integer, String, Boolean, DateTime
 from ._base import Base
 
-class Content(Base):
-    __tablename__ = 'content'
+class Post(Base):
+    __tablename__ = 'post'
     id = Column(Integer, primary_key=True)
     category_id = Column(Integer)
     content = Column(String(140))
@@ -15,4 +15,4 @@ class Content(Base):
     created_at = Column(DateTime, default=datetime.datetime.now)
 
     def __repr__(self):
-        return '<Content %r>' % self.content
+        return '<Post %r>' % self.content
