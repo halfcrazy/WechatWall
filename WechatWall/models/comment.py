@@ -12,7 +12,6 @@ class Comment(Base):
     comment = Column(String(140))
     author = Column(String(20))
     reply_to = Column(Integer)
-    topic_top_id = Column(Integer)
     created_at = Column(DateTime, default=datetime.datetime.now)
     
     def __repr__(self):
