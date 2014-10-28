@@ -11,6 +11,7 @@ class Content(Base):
     id = Column(Integer, primary_key=True)
     category_id = Column(Integer)
     content = Column(String(140))
+    author = Column(String(20))
     created_at = Column(DateTime, default=datetime.datetime.now)
 
     def __repr__(self):
