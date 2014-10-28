@@ -41,5 +41,13 @@ Run
 TODO
 ====
 
+ * 记录点击数
+ * 限制发送频率
+ * 做心跳检测客户端状态，适当断开连接，节省资源
+ * Support sql schema import.
  * Embed AC face to texting. 
  * Frontend interface.
+
+
+Issue
+====
