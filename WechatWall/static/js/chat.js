@@ -1,12 +1,16 @@
 $(function() {
     updater.start();
     $("#submit").click(function() {
+        /*
         var message = {
             id:id,
             author:$("#author").val(),
             msg:$("#msg").val()
         };
-        updater.socket.send(JSON.stringify(message));
+        */
+        //updater.socket.send(JSON.stringify(message));
+        updater.socket.send($("#msg").val());
+        console.log("send:"+$("#msg").val());
         return false;
     });
 });
