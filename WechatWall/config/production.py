@@ -9,6 +9,8 @@ from sae.const import (MYSQL_HOST, MYSQL_PORT,
 
 
 class ProductionConfig(Config):
+    DEBUG = False
+
     SQLALCHEMY_DATABASE_URI = "mysql://{user}:{password}@{host}:{port}/{db}".format(
         user=MYSQL_USER,
         password=MYSQL_PASS,
