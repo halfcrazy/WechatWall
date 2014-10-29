@@ -16,6 +16,9 @@ class BaseHandler(tornado.web.RequestHandler):
     def on_finish(self):
         self.session.close()
 
+    def get_remote_ip():
+        return self.request.remote_ip
+
 
 class IndexHandler(tornado.web.RequestHandler):
     def get(self):
@@ -87,8 +90,8 @@ class ApiCategoryHandler(BaseHandler):
         
         top_rs = [dict({'id': i[0]}) for i in top_list]
 
-        self.set_header("Content-Type","application/json")
-        self.finish(json.dumps({'posts': post_rs, 'top': top_rs}, ensure_ascii=False))
+        self.set_header("Content-Type","application/json; charset=UTF-8")
+        self.write(json.dumps({'posts': post_rs, 'top': top_rs}, ensure_ascii=False))
         return
 
 
@@ -105,22 +108,20 @@ class ApiDetailHandler(BaseHandler):
         post_rs = [dict({'id': i[0], 'category_id': i[1], 'content': i[2].encode('utf-8'), 'created_at': i[3]}) for i in post_list]
         comment_rs = [dict({'id': i[0], 'comment': i[1].encode('utf-8'), 'author': i[2].encode('utf-8'), 'reply_to': i[3], 'created_at': i[4]}) for i in comment_list]
         
-        self.set_header("Content-Type","application/json")
-        self.finish(json.dumps({'post': post_rs, 'comments': comment_rs}, ensure_ascii=False))
+        self.set_header("Content-Type","application/json; charset=UTF-8")
+        self.write(json.dumps({'post': post_rs, 'comments': comment_rs}, ensure_ascii=False))
         return
 
 
 class ApiReceiveHandler(BaseHandler):
     def post(self):
-        #assert Content-Type to application/json
-        self.set_header("Content-Type","application/json")
-        
         kind = self.get_argument("kind","")
         if kind == "post":
             try:
                 message = self.get_argument("message","")
                 if not message.strip():
-                    self.finish(json.dumps({'error': u'内容不能为空'}, ensure_ascii=False))
+                    self.set_header("Content-Type","application/json; charset=UTF-8")
+                    self.write(json.dumps({'error': u'内容不能为空'}, ensure_ascii=False))
                     return
             
                 author = self.get_argument("author","")
@@ -129,14 +130,16 @@ class ApiReceiveHandler(BaseHandler):
             
                 category = self.get_argument("category","")
                 if not category.isdigit():
-                    self.finish(json.dumps({'error': u'分类不能为空'}, ensure_ascii=False))
+                    self.set_header("Content-Type","application/json; charset=UTF-8")
+                    self.write(json.dumps({'error': u'分类不能为空'}, ensure_ascii=False))
                     return
                 
                 self.post = Post(category_id=category, content=message, author=author)
                 self.session.add(self.post)
                 self.session.commit()
-
-                self.finish(json.dumps({'status': u'post创建成功'}, ensure_ascii=False))
+                    
+                self.set_header("Content-Type","application/json; charset=UTF-8")
+                self.write(json.dumps({'status': u'post创建成功'}, ensure_ascii=False))
                 return
             
             except Exception, e:
@@ -146,8 +149,8 @@ class ApiReceiveHandler(BaseHandler):
             try:
                 comment = self.get_argument("comment","")
                 if not comment.strip():
-                    self.finish(json.dumps({'error': u'内容不能为空'}, ensure_ascii=False))
-                    self.finish()
+                    self.set_header("Content-Type","application/json; charset=UTF-8")
+                    self.write(json.dumps({'error': u'内容不能为空'}, ensure_ascii=False))
                     return
 
                 author = self.get_argument("author","")
@@ -159,7 +162,8 @@ class ApiReceiveHandler(BaseHandler):
                 self.session.add(self.comment)
                 self.session.commit()
 
-                self.finish(json.dumps({'status': u'comment创建成功'}, ensure_ascii=False))
+                self.set_header("Content-Type","application/json; charset=UTF-8")
+                self.write(json.dumps({'status': u'comment创建成功'}, ensure_ascii=False))
                 return
 
             except Exception, e:
