@@ -6,6 +6,7 @@ import datetime
 from sqlalchemy import Column, Integer, String, Boolean, DateTime
 from ._base import Base
 
+
 class Category(Base):
     __tablename__ = 'category'
     id = Column(Integer, primary_key=True)

@@ -6,6 +6,7 @@ import datetime
 from sqlalchemy import Column, Integer, String, Boolean, DateTime
 from ._base import Base
 
+
 class Post(Base):
     __tablename__ = 'post'
     id = Column(Integer, primary_key=True)

@@ -13,8 +13,9 @@ engine = create_engine(config.SQLALCHEMY_DATABASE_URI)
 db_session = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,
                                          bind=engine))
-#Base = declarative_base(metadata=MetaData(), metaclass=DeclarativeMeta)
+# Base = declarative_base(metadata=MetaData(), metaclass=DeclarativeMeta)
 Base = declarative_base()
+
 
 def init_db():
     # import all modules here that might define models so that

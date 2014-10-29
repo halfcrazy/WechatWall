@@ -12,9 +12,9 @@ class Application(tornado.web.Application):
         handlers = views.handlers
 
         config = load_config()
-        
+
         settings = dict(
-            debug = config.DEBUG,
+            debug=config.DEBUG,
             cookie_secret=r"\xcf\x15\x18\xccY\xed\xc8\xd6\xfb\x05\xc7\xa5W\x19Kk,\xd1.\xf4\xfd\x11\\\xf3",
             template_path=os.path.join(os.path.dirname(__file__), "templates/"),
             static_path=os.path.join(os.path.dirname(__file__), "static/"),
@@ -22,4 +22,3 @@ class Application(tornado.web.Application):
         )
 
         tornado.web.Application.__init__(self, handlers=handlers, **settings)
-    

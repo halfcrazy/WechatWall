@@ -7,10 +7,10 @@ from handlers import ApiCategoryHandler
 from handlers import ApiDetailHandler
 from handlers import ApiReceiveHandler
 
-handlers=[
-    (r"/",IndexHandler),
-    (r"/ws",WSHandler),
-    (r"/w/([0-9]+)",ApiCategoryHandler),
-    (r"/t/([0-9]+)",ApiDetailHandler),
-    (r"/post",ApiReceiveHandler),
+handlers = [
+    (r"/", IndexHandler),
+    (r"/ws", WSHandler),
+    (r"/w/([0-9]+)", ApiCategoryHandler),
+    (r"/t/([0-9]+)", ApiDetailHandler),
+    (r"/post", ApiReceiveHandler),
     ]

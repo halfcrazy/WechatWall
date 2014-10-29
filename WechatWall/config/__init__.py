@@ -8,7 +8,7 @@ def load_config():
     """加载配置类"""
     parser = SafeConfigParser()
     parser.read("config.ini")
-    mode = parser.get("configure","mode")
+    mode = parser.get("configure", "mode")
     try:
         if mode is None:
             from .development import DevelopmentConfig

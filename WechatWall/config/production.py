@@ -5,7 +5,7 @@ from .default import Config
 
 
 from sae.const import (MYSQL_HOST, MYSQL_PORT,
-            MYSQL_USER, MYSQL_PASS, MYSQL_DB)
+                       MYSQL_USER, MYSQL_PASS, MYSQL_DB)
 
 
 class ProductionConfig(Config):
@@ -17,5 +17,5 @@ class ProductionConfig(Config):
         host=MYSQL_HOST,
         port=MYSQL_PORT,
         db=MYSQL_DB)
-        
-    SQLALCHEMY_POOL_RECYCLE = 10  
+
+    SQLALCHEMY_POOL_RECYCLE = 10

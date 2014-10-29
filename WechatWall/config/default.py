@@ -21,4 +21,4 @@ class Config(object):
 
     parser = SafeConfigParser()
     parser.read("config.ini")
-    IPV4_ONLY  = parser.get("configure","IPV4_ONLY")
+    IPV4_ONLY = parser.get("configure", "IPV4_ONLY")

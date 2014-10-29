@@ -9,10 +9,12 @@ def object_to_json(obj):
     """Transform  object to json"""
     return json.dumps(obj.__dict__)
 
+
 def generate_name():
     """Generate random nickname for those who does'n specified nickname"""
-    word = ["甲","乙","丙","丁","戊","己","庚","辛","壬","癸","子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"]
-    return "".join(random.sample(word,6))
+    word = ["甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸", "子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"]
+    return "".join(random.sample(word, 6))
+
 
 def pretty_date(time=False):
     """

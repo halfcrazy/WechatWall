@@ -4,6 +4,7 @@
 from sqlalchemy import Column, Integer
 from ._base import Base
 
+
 class Top(Base):
     __tablename__ = 'top'
     id = Column(Integer, primary_key=True)

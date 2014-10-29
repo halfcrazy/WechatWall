@@ -12,7 +12,7 @@ from structure import InitData, CloseData, SyncData
 class BaseHandler(tornado.web.RequestHandler):
     def initialize(self):
         self.session = db_session
- 
+
     def on_finish(self):
         self.session.close()
 
@@ -26,7 +26,7 @@ class IndexHandler(tornado.web.RequestHandler):
 
 
 class WSHandler(tornado.websocket.WebSocketHandler):
-    clients=set()
+    clients = set()
 
     @staticmethod
     def broadcast(message):
@@ -55,16 +55,16 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 class ApiCategoryHandler(BaseHandler):
     default_show_nums = 10
 
-    def get(self,category_id):
+    def get(self, category_id):
         self.category_ids = self.session.query(Category.id).all()
         if category_id not in self.category_ids:
-            #主题分类不存在
+            # 主题分类不存在
             print category_id, u"该主题id不存在"
             raise tornado.web.HTTPError(404)
 
-        self.page = self.get_argument("p",1)
+        self.page = self.get_argument("p", 1)
         if self.page < 1:
-            #页数错误
+            # 页数错误
             print self.page, u"页数错误"
             raise tornado.web.HTTPError(404)
 
@@ -83,20 +83,20 @@ class ApiCategoryHandler(BaseHandler):
                                     .offset(default_show_nums * self.page) \
                                     .limit(default_show_nums) \
                                     .all()
-    
+
         post_rs = [dict({'id': i[0], 'category_id': i[1], 'content': i[2].encode('utf-8'), 'created_at': i[3]}) for i in post_list]
-        
+
         top_list = self.session.query(Top.id).filter(Top.category_id == category_id).all()
-        
+
         top_rs = [dict({'id': i[0]}) for i in top_list]
 
-        self.set_header("Content-Type","application/json; charset=UTF-8")
+        self.set_header("Content-Type", "application/json; charset=UTF-8")
         self.write(json.dumps({'posts': post_rs, 'top': top_rs}, ensure_ascii=False))
         return
 
 
 class ApiDetailHandler(BaseHandler):
-    def get(self,content_id):
+    def get(self, content_id):
         post = self.session.query(Content.id, Content.category_id, Content.content, Content.created_at) \
                            .filter(Content.id == content_id) \
                            .one()
@@ -104,65 +104,66 @@ class ApiDetailHandler(BaseHandler):
                                    .filter(Comment.reply_to == content_id) \
                                    .order_by(Comment.created_at) \
                                    .all()
-        
+
         post_rs = [dict({'id': i[0], 'category_id': i[1], 'content': i[2].encode('utf-8'), 'created_at': i[3]}) for i in post_list]
-        comment_rs = [dict({'id': i[0], 'comment': i[1].encode('utf-8'), 'author': i[2].encode('utf-8'), 'reply_to': i[3], 'created_at': i[4]}) for i in comment_list]
-        
-        self.set_header("Content-Type","application/json; charset=UTF-8")
+        comment_rs = [dict({'id': i[0], 'comment': i[1].encode('utf-8'), 'author': i[2].encode('utf-8'), 'reply_to': i[3], 'created_at': i[4]})
+                      for i in comment_list]
+
+        self.set_header("Content-Type", "application/json; charset=UTF-8")
         self.write(json.dumps({'post': post_rs, 'comments': comment_rs}, ensure_ascii=False))
         return
 
 
 class ApiReceiveHandler(BaseHandler):
     def post(self):
-        kind = self.get_argument("kind","")
+        kind = self.get_argument("kind", "")
         if kind == "post":
             try:
-                message = self.get_argument("message","")
+                message = self.get_argument("message", "")
                 if not message.strip():
-                    self.set_header("Content-Type","application/json; charset=UTF-8")
-                    self.write(json.dumps({'error': u'内容不能为空'}, ensure_ascii=False))
-                    return
-            
-                author = self.get_argument("author","")
-                if not author.strip():
-                    author = generate_name()
-            
-                category = self.get_argument("category","")
-                if not category.isdigit():
-                    self.set_header("Content-Type","application/json; charset=UTF-8")
-                    self.write(json.dumps({'error': u'分类不能为空'}, ensure_ascii=False))
-                    return
-                
-                self.post = Post(category_id=category, content=message, author=author)
-                self.session.add(self.post)
-                self.session.commit()
-                    
-                self.set_header("Content-Type","application/json; charset=UTF-8")
-                self.write(json.dumps({'status': u'post创建成功'}, ensure_ascii=False))
-                return
-            
-            except Exception, e:
-                raise e
-        
-        elif kind == "comment":
-            try:
-                comment = self.get_argument("comment","")
-                if not comment.strip():
-                    self.set_header("Content-Type","application/json; charset=UTF-8")
+                    self.set_header("Content-Type", "application/json; charset=UTF-8")
                     self.write(json.dumps({'error': u'内容不能为空'}, ensure_ascii=False))
                     return
 
-                author = self.get_argument("author","")
+                author = self.get_argument("author", "")
                 if not author.strip():
                     author = generate_name()
-                reply_to = self.get_argument("reply_to","")
-            
+
+                category = self.get_argument("category", "")
+                if not category.isdigit():
+                    self.set_header("Content-Type", "application/json; charset=UTF-8")
+                    self.write(json.dumps({'error': u'分类不能为空'}, ensure_ascii=False))
+                    return
+
+                self.post = Post(category_id=category, content=message, author=author)
+                self.session.add(self.post)
+                self.session.commit()
+
+                self.set_header("Content-Type", "application/json; charset=UTF-8")
+                self.write(json.dumps({'status': u'post创建成功'}, ensure_ascii=False))
+                return
+
+            except Exception, e:
+                raise e
+
+        elif kind == "comment":
+            try:
+                comment = self.get_argument("comment", "")
+                if not comment.strip():
+                    self.set_header("Content-Type", "application/json; charset=UTF-8")
+                    self.write(json.dumps({'error': u'内容不能为空'}, ensure_ascii=False))
+                    return
+
+                author = self.get_argument("author", "")
+                if not author.strip():
+                    author = generate_name()
+                reply_to = self.get_argument("reply_to", "")
+
                 self.comment = Comment(comment=comment, author=author, reply_to=reply_to)
                 self.session.add(self.comment)
                 self.session.commit()
 
-                self.set_header("Content-Type","application/json; charset=UTF-8")
+                self.set_header("Content-Type", "application/json; charset=UTF-8")
                 self.write(json.dumps({'status': u'comment创建成功'}, ensure_ascii=False))
                 return
 
