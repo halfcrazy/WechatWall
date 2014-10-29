@@ -5,6 +5,6 @@ from .default import Config
 
 
 class DevelopmentConfig(Config):
-    DEBUG = False
+    DEBUG = True
 
     SQLALCHEMY_POOL_RECYCLE = 10
