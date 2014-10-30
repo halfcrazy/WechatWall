@@ -13,6 +13,7 @@ class Comment(Base):
     comment = Column(String(140))
     author = Column(String(20))
     reply_to = Column(Integer)
+    ip = Column(String(20))
     created_at = Column(DateTime, default=datetime.datetime.now)
 
     def __repr__(self):
