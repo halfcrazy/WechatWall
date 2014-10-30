@@ -2,6 +2,9 @@ body {
 }
 .post-list, .post-editor {
 }
+.editor-control {
+    margin-top: 10px;
+}
 .center {
   width: auto;
   display: table;

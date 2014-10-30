@@ -4,8 +4,9 @@
 <head>
     <meta charset="utf-8">
     <title>小助手微信墙</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="shortcut icon" type="image/png" href="{{ static_url('img/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ static_url("css/normalize.css") }}">
     <link rel="stylesheet" href="{{ static_url("css/vendor/bootstrap.min.css") }}">
     <link rel="stylesheet" href="{{ static_url("css/flat-ui.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ static_url("css/style.css") }}">
@@ -53,24 +54,30 @@
         <div class="col-md-8">
           <form action="#" class="form">
             <div class="form-group">
-              <textarea class="form-control" rows="2">在这里输入你想说的话</textarea>
+                <textarea class="form-control" placeholder="在这里输入你想说的话" rows="2"></textarea>
+                <div class="row pull-right editor-control">
+                    <div class="col-md-2 col-sm-2">
+                    </div>
+                    <div class="col-md-5 col-sm-5">
+                       <div class="form-group">
+                       <select data-toggle="select" name="inverse-dropdown" class="form-control select select-danger mrs mbm">
+                        <option value="0">表白</option>
+                        <option value="1">吐槽</option>
+                        <option value="2">心愿</option>
+                      </select>
+                    </div>
+                    </div>
+                 
+                    <div class="col-md-3 col-sm-3">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="昵称">
+                        </div><!-- /.form-group -->
+                     </div>
+                    <div class="col-md-2 col-sm-2">
+                        <input type="submit" value="发布" class="btn btn-info">
+                    </div>
+                </div>
             </div>
-            <div class="col-md-5">
-               <div class="form-group">
-               <select data-toggle="select" name="inverse-dropdown" class="form-control select select-danger mrs mbm">
-                <option value="0">表白</option>
-                <option value="1">吐槽</option>
-                <option value="2">心愿</option>
-              </select>
-            </div>
-            </div>
-         
-            <div class="col-md-3">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="昵称">
-          </div><!-- /.form-group -->
-        </div>
-        <input type="submit" value="发布" class="btn btn-info">
           </form>
         </div>
     </div><!-- /.row -->
