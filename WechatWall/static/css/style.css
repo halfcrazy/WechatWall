@@ -1,21 +1,36 @@
 body {
 }
-.post-list, .post-editor {
+.nav-img {
+    height:36px;
+}
+.post-form {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    border: 1px solid lightgray;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    background-color: white;
+}
+.form-area {
+    margin-bottom: 10px;
+}
+.post-list {
+    margin-top: 20px;
+}
+.post-editor {
+    
 }
 .editor-control {
     margin-top: 10px;
 }
-.center {
-  width: auto;
-  display: table;
-  margin-left: auto;
-  margin-right: auto;
+#submit-btn {
+    margin-left: 5px;
 }
 .post {
-    -webkit-border-radius:6px;
-    -moz-border-radius:6px;
-    border-radius:6px;
-    border:1px solid lightgray;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid lightgray;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
     transition-duration: 0.5s;
     padding: 6px;
@@ -34,4 +49,22 @@ body {
 .page-num{
     margin-top: 15px;
     text-align: center;
+}
+#phasebeam {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+#phasebeam canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.footer {
+    line-height: 0.8em;
 }

@@ -13,14 +13,15 @@
 </head>
 
 <body>
-<div class="container">
+<header>
 <!--顶部导航栏-->
 <nav class="navbar navbar-default" role="navigation">
+<div class="container">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
       <span class="sr-only">Toggle navigation</span>
     </button>
-    <a class="navbar-brand" href="#">微信墙</a>
+    <a class="navbar-brand" href="#"><img class="nav-img" alt="Brand" src="{{ static_url("img/icons/svg/chat.svg") }}">微信墙</a>
   </div>
   <div class="collapse navbar-collapse" id="navbar-collapse-01">
     <ul class="nav navbar-nav navbar-right">
@@ -40,50 +41,58 @@
     </form>
     -->
   </div>
+</div>
 </nav>
 <!--顶部导航结束-->
+</header>
 
-
+<!--
 <div class="content">
 </div>
-
-<div class="post-editor">
+-->
+<main class="main" role="main">
+<div class="container">
+  <div class="post-editor">
 
     <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-          <form action="#" class="form">
-            <div class="form-group">
-                <textarea class="form-control" placeholder="在这里输入你想说的话" rows="2"></textarea>
-                <div class="row pull-right editor-control">
-                    <div class="col-md-2 col-sm-2">
-                    </div>
-                    <div class="col-md-5 col-sm-5">
-                       <div class="form-group">
-                       <select data-toggle="select" name="inverse-dropdown" class="form-control select select-danger mrs mbm">
+      <div class="col-md-8 col-md-offset-2 post-form">
+        <form action="#" class="form">
+          <div class="form-group form-area">
+            <lable for="content">发表内容</lable>
+            <textarea class="form-control" name="content" placeholder="在这里输入你想说的话" rows="2"></textarea>
+            <div class="form-inline">
+              <div class="row editor-control">
+                <!--<div class="pull-right">-->
+                  <div class="col-md-4 col-sm-5 col-xs-4">
+                    <div class="form-group">
+                      <select data-toggle="select" name="inverse-dropdown" class="select select-danger mrs mbm">
                         <option value="0">表白</option>
                         <option value="1">吐槽</option>
                         <option value="2">心愿</option>
                       </select>
                     </div>
+                  </div>
+                  <div class="col-md-4 col-sm-3 col-xs-5">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="昵称">
                     </div>
-                 
-                    <div class="col-md-3 col-sm-3">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="昵称">
-                        </div><!-- /.form-group -->
-                     </div>
-                    <div class="col-md-2 col-sm-2">
-                        <input type="submit" value="发布" class="btn btn-info">
+                  </div>
+                  <div class="col-md-4 col-sm-2 col-xs-3">
+                    <div class="form-group">
+                      <input id="submit_btn" type="submit" value="发布" class="btn btn-info">
                     </div>
-                </div>
+                  </div>
+                <!--</div>--><!-- /.pull-right -->
+              </div>
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
+      </div>
     </div><!-- /.row -->
 
-</div>
-<div class="post-list">
+  </div>
+
+<section class="post-list">
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
@@ -204,7 +213,7 @@
             </div>
             <div class="col-md-2"></div>
         </div>
-</div>
+</section>
     <div class="page-num">
         <ul class="pagination-plain">
             <li class="previous"><a href="#fakelink">← Previous</a></li>
@@ -223,6 +232,23 @@
     </div>
 
 </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="row footer-bottom">
+    <ul class="list-unstyled text-center">
+    <li>♥ Do have faith in what you're doing.</li>
+    </ul>
+      <ul class="list-inline text-center">
+        <li>Producted by <a href="http://csxyxzs.sinaapp.com/page/about.htm" target="_blank">城市学院小助手</a></li>
+        <li>联系我Q 694930058</li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+
 <!--
       <h1>h1. Bootstrap heading</h1>
       <h2>h2. Bootstrap heading</h2>
@@ -307,6 +333,8 @@
 
       <pre>&lt;p&gt;Sample text here...&lt;/p&gt;</pre>
 -->
+
+<!--
 <div class="form">
     <form>
         <input id="msg" type="text" placeholder="消息内容" required></input>
@@ -314,11 +342,17 @@
         <input id="submit" type="submit"></input>
     </form>
 </div>
+-->
 
-</div>
 
 <script src="{{ static_url("js/vendor/jquery.min.js") }}"></script>
 <script src="{{ static_url("js/flat-ui.min.js") }}"></script>
+<div id="phasebeam">
+  <canvas></canvas>
+  <canvas></canvas>
+  <canvas></canvas>
+</div>
+<script src="{{ static_url("js/phasebeam.js") }}"></script>
 <script src="{{ static_url("js/chat.js") }}"></script>
 <script type="text/javascript">
  function html_escape(a){
