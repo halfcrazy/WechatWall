@@ -1,54 +1,60 @@
 body {
 }
 .nav-img {
-    height:36px;
+  height:36px;
+}
+.sys-notification {
+  background-color: white;
 }
 .post-form {
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    border: 1px solid lightgray;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-    background-color: white;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  background-color: white;
+}
+#category-select {
+  width: 30px;
 }
 .form-area {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 .post-list {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 .post-editor {
-    
+  margin-top: 10px;
 }
 .editor-control {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 #submit-btn {
-    margin-left: 5px;
+  margin-left: 5px;
 }
 .post {
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    border-radius: 6px;
-    border: 1px solid lightgray;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-    transition-duration: 0.5s;
-    padding: 6px;
-    margin: 5px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  border: 1px solid lightgray;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  transition-duration: 0.5s;
+  padding: 6px;
+  margin: 5px;
 }
 .post:hover {
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-    transition-duration: 0.5s;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  transition-duration: 0.5s;
 }
 .post p {
-    line-height: 0.3em;
+  line-height: 0.3em;
 }
 .info {
-    font-size: x-small;
+  font-size: x-small;
 }
 .page-num{
-    margin-top: 15px;
-    text-align: center;
+  margin-top: 15px;
+  text-align: center;
 }
 #phasebeam {
   position: fixed;
@@ -66,5 +72,34 @@ body {
   height: 100%;
 }
 .footer {
-    line-height: 0.8em;
+  line-height: 0.8em;
 }
+#slogen {
+  padding-top: 5px;
+  color: black;
+}
+.Icon--tweet{
+  left: -2px;
+  top: -5px
+}
+@font-face{
+  font-family:'rosettaicons';
+  src:url('../fonts/rosetta-icons-Regular.eot');
+  src:url('../fonts/rosetta-icons-Regular.eot?#iefix') format('embedded-opentype'),url('../fonts/rosetta-icons-Regular.woff') format('woff'),url('../fonts/rosetta-icons-Regular.ttf') format('truetype');
+  font-style:normal;font-weight:normal;
+}
+.Icon{
+  background:transparent;
+  display:inline-block;
+  font-style:normal;
+  vertical-align:baseline;
+}
+.Icon:before{display:block;
+  font-family:"rosettaicons";
+  font-weight:normal;
+  font-style:normal;
+  text-align:center;
+  -webkit-font-smoothing:antialiased;
+}
+.Icon--tweet:before{content:"\f029"}
+.Icon{font-size:19px;height:19px;position:relative;vertical-align:middle;width:17px}

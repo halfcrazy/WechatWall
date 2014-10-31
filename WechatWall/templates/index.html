@@ -52,6 +52,15 @@
 -->
 <main class="main" role="main">
 <div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2 sys-notification">
+      <ul class="list-unstyled" id="twitter">
+        <li>第一条消息</li>
+        <li>第二条消息</li>
+        <li>第三条消息</li>
+      </ul>
+    </div>
+  </div>
   <div class="post-editor">
 
     <div class="row">
@@ -65,7 +74,7 @@
                 <!--<div class="pull-right">-->
                   <div class="col-md-4 col-sm-5 col-xs-4">
                     <div class="form-group">
-                      <select data-toggle="select" name="inverse-dropdown" class="select select-danger mrs mbm">
+                      <select data-toggle="select" name="inverse-dropdown" class="select select-danger mrs mbm" id="category-select">
                         <option value="0">表白</option>
                         <option value="1">吐槽</option>
                         <option value="2">心愿</option>
@@ -79,7 +88,7 @@
                   </div>
                   <div class="col-md-4 col-sm-2 col-xs-3">
                     <div class="form-group">
-                      <input id="submit_btn" type="submit" value="发布" class="btn btn-info">
+                      <a id="submit_btn" class="btn btn-info"><i class="Icon Icon--tweet"></i>发布</a>
                     </div>
                   </div>
                 <!--</div>--><!-- /.pull-right -->
@@ -238,11 +247,11 @@
   <div class="container">
     <div class="row footer-bottom">
     <ul class="list-unstyled text-center">
-    <li>♥ Do have faith in what you're doing.</li>
+    <li id="slogen">♥ Do have faith in what you're doing.</li>
     </ul>
       <ul class="list-inline text-center">
         <li>Producted by <a href="http://csxyxzs.sinaapp.com/page/about.htm" target="_blank">城市学院小助手</a></li>
-        <li>联系我Q 694930058</li>
+        <!--<li>联系我Q 694930058</li>-->
       </ul>
     </div>
   </div>
@@ -354,25 +363,8 @@
 </div>
 <script src="{{ static_url("js/phasebeam.js") }}"></script>
 <script src="{{ static_url("js/chat.js") }}"></script>
-<script type="text/javascript">
- function html_escape(a){
-    return a.replace('&', '&amp;', 'g')
-               .replace('<', '&lt;', 'g')
-               .replace('>', '&gt;', 'g')
-               .replace('"', '&quot;', 'g')
-               .replace("'", '&#39;', 'g');
-    }
+<script src="{{ static_url("js/wall.js") }}"></script>
 
-$(function(){
-    var color_list = ["#FAB5A5","#D1E1C6","#FDF7D7","#99CCFF"];
-    var myDate = new Date();
-    var sec = myDate.getSeconds();
-    $.each($(".post"),function(idx,val){
-        $(this).css({"background-color":color_list[(sec+idx)%color_list.length]});
-    });
-    $('select[name="inverse-dropdown"], select[name="inverse-dropdown-optgroup"], select[name="inverse-dropdown-disabled"]').select2({dropdownCssClass: 'select-inverse-dropdown'});
-});
-</script>
 </body>
 
 </html>
