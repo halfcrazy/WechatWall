@@ -12,6 +12,9 @@ class Comment(Base):
     id = Column(Integer, primary_key=True)
     comment = Column(String(140))
     author = Column(String(20))
+    # kind 为回复种类，回复帖子 1，回复评论 2
+    kind = Column(Integer)
+    # reply_to 回复的id号
     reply_to = Column(Integer)
     ip = Column(String(20))
     created_at = Column(DateTime, default=datetime.datetime.now)
