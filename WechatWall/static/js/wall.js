@@ -50,6 +50,11 @@ var updater = {
     }
 };
 
+function getCookie(name) {
+    var r = document.cookie.match("\\b" + name + "=([^;]*)\\b");
+    return r ? r[1] : undefined;
+}
+
 $(function(){
     //设置顶部滚动文字
     $("#twitter li:not(:first)").css("display","none");
@@ -80,6 +85,15 @@ $(function(){
             category:$("#category").val(),
             nickname:$("#nickname").val()
         }
+        $.post("/post",{
+            _xsrf: getCookie("_xsrf"),
+            kind: "post",
+            message: $("#content").val(),
+            author: $("#nickname").val(),
+            category: $("#category").val()
+        },function (data,textStatus) {
+            console.log(data);
+        });
         updater.socket.send(JSON.stringify(msg));
         console.log(JSON.stringify(msg));
         return false;
