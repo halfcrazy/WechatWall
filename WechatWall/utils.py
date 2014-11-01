@@ -16,6 +16,14 @@ def generate_name():
     return "".join(random.sample(word, 6))
 
 
+def datetime2timestamp(dt_obj):
+    from datetime import datetime
+    import time
+    time_tuple = dt_obj.timetuple()
+    ts = time.mktime(time_tuple)
+    return ts
+
+
 def pretty_date(time=False):
     """
     Get a datetime object or a int() Epoch timestamp and return a
