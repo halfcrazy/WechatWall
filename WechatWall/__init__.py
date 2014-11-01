@@ -15,9 +15,10 @@ class Application(tornado.web.Application):
 
         settings = dict(
             debug=config.DEBUG,
-            cookie_secret=r"\xcf\x15\x18\xccY\xed\xc8\xd6\xfb\x05\xc7\xa5W\x19Kk,\xd1.\xf4\xfd\x11\\\xf3",
-            template_path=os.path.join(os.path.dirname(__file__), "templates"),
-            static_path=os.path.join(os.path.dirname(__file__), "static"),
+            # cookie_secret=base64.b64encode(uuid.uuid4().bytes + uuid.uuid4().bytes)
+            cookie_secret='esHxCHc8TGuPTz3ZI0NMVVGyEUk8zUhpr9FX8oqV8CM=',
+            template_path=os.path.join(os.path.dirname(__file__), 'templates'),
+            static_path=os.path.join(os.path.dirname(__file__), 'static'),
             xsrf_cookies=True,
         )
 

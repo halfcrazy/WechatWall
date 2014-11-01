@@ -46,18 +46,14 @@
 <!--顶部导航结束-->
 </header>
 
-<!--
-<div class="content">
-</div>
--->
 <main class="main" role="main">
 <div class="container">
   <div class="row">
     <div class="col-md-8 col-md-offset-2 sys-notification">
       <ul class="list-unstyled" id="twitter">
-        <li>第一条消息</li>
-        <li>第二条消息</li>
-        <li>第三条消息</li>
+        <li>通知:新版微信墙还在测试中,如果发现问题请联系管理员</li>
+        <li>通知:新版微信墙还在测试中,如果发现问题请联系管理员</li>
+        <li>通知:新版微信墙还在测试中,如果发现问题请联系管理员</li>
       </ul>
     </div>
   </div>
@@ -65,16 +61,16 @@
 
     <div class="row">
       <div class="col-md-8 col-md-offset-2 post-form">
-        <form action="#" class="form">
+        <form action="#" id="myform" class="form">
           <div class="form-group form-area">
             <lable for="content">发表内容</lable>
-            <textarea class="form-control" name="content" placeholder="在这里输入你想说的话" rows="2"></textarea>
+            <textarea class="form-control" id="content" name="content" placeholder="在这里输入你想说的话" rows="2"></textarea>
             <div class="form-inline">
               <div class="row editor-control">
                 <!--<div class="pull-right">-->
                   <div class="col-md-4 col-sm-5 col-xs-4">
                     <div class="form-group">
-                      <select data-toggle="select" name="inverse-dropdown" class="select select-danger mrs mbm" id="category-select">
+                      <select data-toggle="select" id="category" name="category" class="select select-danger mrs mbm" id="category-select">
                         <option value="0">表白</option>
                         <option value="1">吐槽</option>
                         <option value="2">心愿</option>
@@ -83,7 +79,7 @@
                   </div>
                   <div class="col-md-4 col-sm-3 col-xs-5">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="昵称">
+                        <input type="text" id="nickname" name="nickname" class="form-control" placeholder="昵称">
                     </div>
                   </div>
                   <div class="col-md-4 col-sm-2 col-xs-3">
@@ -102,143 +98,175 @@
   </div>
 
 <section class="post-list">
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class="post">
-                <p class="text-left info">#474 点:63 评:7</p>
-                <p class="text-left">测试消息内容，舅舅家了近来可好</p>
-                <p class="text-right">管理员</p>
-                <p class="text-right">3 minutes ago</p>
-                </div>
-            </div>
-            <div class="col-md-2"></div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="post">
+          <a href="http://www.baidu.com" target="_blank">
+          <p class="text-left info">#474 点:63 评:7</p>
+          <p class="text-left">测试消息内容，舅舅家了近来可好</p>
+          <p class="text-right">管理员</p>
+          </a>
+          <p class="text-right">3 minutes ago</p>
         </div>
-                <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class="post">
-                <p class="text-left info">#474 点:63 评:7</p>
-                <p class="text-left">测试消息内容，舅舅家了近来可好</p>
-                <p class="text-right">管理员</p>
-                <p class="text-right">3 minutes ago</p>
-                </div>
-            </div>
-            <div class="col-md-2"></div>
+      </div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="post">
+          <a href="http://www.baidu.com" target="_blank">
+          <p class="text-left info">#474 点:63 评:7</p>
+          <p class="text-left">测试消息内容，舅舅家了近来可好</p>
+          <p class="text-right">管理员</p>
+          <p class="text-right">3 minutes ago</p>
+          </a>
         </div>
-                <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class="post">
-                <p class="text-left info">#474 点:63 评:7</p>
-                <p class="text-left">测试消息内容，舅舅家了近来可好</p>
-                <p class="text-right">管理员</p>
-                <p class="text-right">3 minutes ago</p>
-                </div>
-            </div>
-            <div class="col-md-2"></div>
+      </div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="post">
+          <a href="http://www.baidu.com" target="_blank">
+          <p class="text-left info">#474 点:63 评:7</p>
+          <p class="text-left">测试消息内容，舅舅家了近来可好</p>
+          <p class="text-right">管理员</p>
+          <p class="text-right">3 minutes ago</p>
+          </a>
         </div>
-                <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class="post">
-                <p class="text-left info">#474 点:63 评:7</p>
-                <p class="text-left">测试消息内容，舅舅家了近来可好</p>
-                <p class="text-right">管理员</p>
-                <p class="text-right">3 minutes ago</p>
-                </div>
-            </div>
-            <div class="col-md-2"></div>
+      </div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="post">
+          <a href="http://www.baidu.com" target="_blank">
+          <p class="text-left info">#474 点:63 评:7</p>
+          <p class="text-left">测试消息内容，舅舅家了近来可好</p>
+          <p class="text-right">管理员</p>
+          <p class="text-right">3 minutes ago</p>
+          </a>
         </div>
-                <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class="post">
-                <p class="text-left info">#474 点:63 评:7</p>
-                <p class="text-left">测试消息内容，舅舅家了近来可好</p>
-                <p class="text-right">管理员</p>
-                <p class="text-right">3 minutes ago</p>
-                </div>
-            </div>
-            <div class="col-md-2"></div>
+      </div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="post">
+          <a href="http://www.baidu.com" target="_blank">
+          <p class="text-left info">#474 点:63 评:7</p>
+          <p class="text-left">测试消息内容，舅舅家了近来可好</p>
+          <p class="text-right">管理员</p>
+          <p class="text-right">3 minutes ago</p>
+          </a>
         </div>
-                <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class="post">
-                <p class="text-left info">#474 点:63 评:7</p>
-                <p class="text-left">测试消息内容，舅舅家了近来可好</p>
-                <p class="text-right">管理员</p>
-                <p class="text-right">3 minutes ago</p>
-                </div>
-            </div>
-            <div class="col-md-2"></div>
+      </div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="post">
+          <a href="http://www.baidu.com" target="_blank">
+          <p class="text-left info">#474 点:63 评:7</p>
+          <p class="text-left">测试消息内容，舅舅家了近来可好</p>
+          <p class="text-right">管理员</p>
+          <p class="text-right">3 minutes ago</p>
+          </a>
         </div>
-                <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class="post">
-                <p class="text-left info">#474 点:63 评:7</p>
-                <p class="text-left">测试消息内容，舅舅家了近来可好</p>
-                <p class="text-right">管理员</p>
-                <p class="text-right">3 minutes ago</p>
-                </div>
-            </div>
-            <div class="col-md-2"></div>
+      </div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="post">
+          <a href="http://www.baidu.com" target="_blank">
+          <p class="text-left info">#474 点:63 评:7</p>
+          <p class="text-left">测试消息内容，舅舅家了近来可好</p>
+          <p class="text-right">管理员</p>
+          <p class="text-right">3 minutes ago</p>
+          </a>
         </div>
-                <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class="post">
-                <p class="text-left info">#474 点:63 评:7</p>
-                <p class="text-left">测试消息内容，舅舅家了近来可好</p>
-                <p class="text-right">管理员</p>
-                <p class="text-right">3 minutes ago</p>
-                </div>
-            </div>
-            <div class="col-md-2"></div>
+      </div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="post">
+          <a href="http://www.baidu.com" target="_blank">
+          <p class="text-left info">#474 点:63 评:7</p>
+          <p class="text-left">测试消息内容，舅舅家了近来可好</p>
+          <p class="text-right">管理员</p>
+          <p class="text-right">3 minutes ago</p>
+          </a>
         </div>
-                <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class="post">
-                <p class="text-left info">#474 点:63 评:7</p>
-                <p class="text-left">测试消息内容，舅舅家了近来可好</p>
-                <p class="text-right">管理员</p>
-                <p class="text-right">3 minutes ago</p>
-                </div>
-            </div>
-            <div class="col-md-2"></div>
+      </div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="post">
+          <a href="http://www.baidu.com" target="_blank">
+          <p class="text-left info">#474 点:63 评:7</p>
+          <p class="text-left">测试消息内容，舅舅家了近来可好</p>
+          <p class="text-right">管理员</p>
+          <p class="text-right">3 minutes ago</p>
+          </a>
         </div>
-                <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class="post">
-                <p class="text-left info">#474 点:63 评:7</p>
-                <p class="text-left">测试消息内容，舅舅家了近来可好</p>
-                <p class="text-right">管理员</p>
-                <p class="text-right">3 minutes ago</p>
-                </div>
-            </div>
-            <div class="col-md-2"></div>
+      </div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="post">
+          <a href="http://www.baidu.com" target="_blank">
+          <p class="text-left info">#474 点:63 评:7</p>
+          <p class="text-left">测试消息内容，舅舅家了近来可好</p>
+          <p class="text-right">管理员</p>
+          <p class="text-right">3 minutes ago</p>
+          </a>
         </div>
+      </div>
+    <div class="col-md-2"></div>
+  </div>
+
 </section>
-    <div class="page-num">
-        <ul class="pagination-plain">
-            <li class="previous"><a href="#fakelink">← Previous</a></li>
-            <li><a href="#fakelink">1</a></li>
-            <li><a href="#fakelink">2</a></li>
-            <li><a href="#fakelink">3</a></li>
-            <li><a href="#fakelink">4</a></li>
-            <li class="active"><a href="#fakelink">5</a></li>
-            <li><a href="#fakelink">6</a></li>
-            <li><a href="#fakelink">7</a></li>
-            <li><a href="#fakelink">8</a></li>
-            <li><a href="#fakelink">9</a></li>
-            <li><a href="#fakelink">10</a></li>
-            <li class="next"><a href="#fakelink">Newer →</a></li>
-        </ul>
-    </div>
+
+  <div class="page-num">
+    <ul class="pagination-plain">
+      <li class="previous"><a href="#fakelink">← Previous</a></li>
+      <li><a href="#fakelink">1</a></li>
+      <li><a href="#fakelink">2</a></li>
+      <li><a href="#fakelink">3</a></li>
+      <li><a href="#fakelink">4</a></li>
+      <li class="active"><a href="#fakelink">5</a></li>
+      <li><a href="#fakelink">6</a></li>
+      <li><a href="#fakelink">7</a></li>
+      <li><a href="#fakelink">8</a></li>
+      <li><a href="#fakelink">9</a></li>
+      <li><a href="#fakelink">10</a></li>
+      <li class="next"><a href="#fakelink">Newer →</a></li>
+    </ul>
+  </div>
 
 </div>
 </main>
@@ -259,91 +287,6 @@
 
 
 <!--
-      <h1>h1. Bootstrap heading</h1>
-      <h2>h2. Bootstrap heading</h2>
-      <h3>h3. Bootstrap heading</h3>
-      <h4>h4. Bootstrap heading</h4>
-      <h5>h5. Bootstrap heading</h5>
-      <h6>h6. Bootstrap heading</h6>
-
-      <p>Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>
-
-      <p class="lead">Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.</p>
-
-      <p>
-        <small>This line of text is meant to be treated as fine print.</small>
-      </p>
-
-      <p>
-        <strong>rendered as bold text</strong>
-      </p>
-
-      <p>
-        <em>rendered as italicized text</em>
-      </p>
-
-
-      <p class="text-left">Left aligned text.</p>
-      <p class="text-center">Center aligned text.</p>
-      <p class="text-right">Right aligned text.</p>
-
-      <p class="text-muted">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</p>
-      <p class="text-primary">Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-      <p class="text-success">Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
-      <p class="text-info">Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-      <p class="text-warning">Etiam porta sem malesuada magna mollis euismod.</p>
-      <p class="text-danger">Donec ullamcorper nulla non metus auctor fringilla.</p>
-
-      <p>An abbreviation of the word attribute is <abbr title="attribute">attr</abbr></p>
-
-      <p><abbr title="HyperText Markup Language" class="initialism">HTML</abbr> is the best thing since sliced bread.</p>
-
-      <address>
-        <strong>Twitter, Inc.</strong><br>
-        795 Folsom Ave, Suite 600<br>
-        San Francisco, CA 94107<br>
-        <abbr title="Phone">P:</abbr> (123) 456-7890
-      </address>
-
-      <address>
-        <strong>Full Name</strong><br>
-        <a href="mailto:#">first.last@example.com</a>
-      </address>
-
-      <blockquote>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-      </blockquote>
-
-      <blockquote>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-        <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
-      </blockquote>
-
-      <blockquote class="pull-right">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-        <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
-      </blockquote>
-
-
-
-      <dl class="dl-horizontal">
-        <dt>Description lists</dt>
-        <dd>A description list is perfect for defining terms.</dd>
-        <dt>Euismod</dt>
-        <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-        <dd>Donec id elit non mi porta gravida at eget metus.</dd>
-        <dt>Malesuada porta</dt>
-        <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
-        <dt>Felis euismod semper eget lacinia</dt>
-        <dd>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</dd>
-      </dl>
-
-      <p>For example, <code>&lt;section&gt;</code> should be wrapped as inline.</p>
-
-      <pre>&lt;p&gt;Sample text here...&lt;/p&gt;</pre>
--->
-
-<!--
 <div class="form">
     <form>
         <input id="msg" type="text" placeholder="消息内容" required></input>
@@ -362,7 +305,6 @@
   <canvas></canvas>
 </div>
 <script src="{{ static_url("js/phasebeam.js") }}"></script>
-<script src="{{ static_url("js/chat.js") }}"></script>
 <script src="{{ static_url("js/wall.js") }}"></script>
 
 </body>
