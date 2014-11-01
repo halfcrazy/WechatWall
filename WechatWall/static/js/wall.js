@@ -6,6 +6,49 @@ function html_escape(a){
             .replace("'", '&#39;', 'g');
 }
 
+function pretty_date(ts) {
+function pretty_date(ts) {
+    var timestamp = new Date().getTime() / 1000;
+    var second_diff = timestamp - ts;
+    var day_diff = Math.floor(second_diff / 86400);
+    if (day_diff < 0) {
+        return "";
+    }
+    if (day_diff == 0) {
+        if (second_diff < 10) {
+            return "just now";
+        }
+        if (second_diff < 60) {
+            return second_diff + " seconds ago";
+        }
+        if (second_diff < 120) {
+            return "a minute ago";
+        }
+        if (second_diff < 3600) {
+            return Math.floor(second_diff / 60) + " minutes ago";
+        }
+        if (second_diff < 7200) {
+            return "an hour ago";
+        }
+        if (second_diff < 86400) {
+            return Math.floor(second_diff / 3600) + " hours ago";
+        }
+    }
+    if (day_diff == 1) {
+        return "Yesterday";
+    }
+    if (day_diff < 7) {
+        return day_diff + " days ago";
+    }
+    if (day_diff < 31) {
+        return Math.floor(day_diff / 7) + " weeks ago";
+    }
+    if (day_diff < 365) {
+        return Math.floor(day_diff / 30) + " months ago";
+    }
+    return Math.floor(day_diff / 365) + " years ago";
+}
+
 function set_color () {
     //设置内容背景颜色
     var color_list = ["#FAB5A5","#D1E1C6","#FFFF99","#99CCFF"];
@@ -15,6 +58,7 @@ function set_color () {
         $(this).css({"background-color":color_list[(sec+idx)%color_list.length]});
     });
 }
+
 var updater = {
     socket: null,
 
@@ -25,7 +69,6 @@ var updater = {
             updater.showMessage(JSON.parse(event.data));
         }
     },
-
 
     showMessage: function(message) {
         console.log(message);
@@ -73,6 +116,22 @@ $(function(){
     //$('select[name="inverse-dropdown"], select[name="inverse-dropdown-optgroup"], select[name="inverse-dropdown-disabled"]').select2({dropdownCssClass: 'select-inverse-dropdown'});
     $('select[name="category"]').select2({dropdownCssClass: 'select-inverse-dropdown'});
 
+    //首次加载内容
+    $.getJSON("/w/1", function(data) {
+        var obj = $.parseJSON(data);
+        if(obj.statusCode==200){
+            var items = [];
+            $.each(obj.posts,function(idx,post){
+                items.push( "<li id='" + key + "'>" + val + "</li>" );
+            });
+        }else{
+            return;
+        }
+      $( "<ul/>", {
+        "class": "my-new-list",
+        html: items.join( "" )
+      }).appendTo( "body" );
+    });
     //设置post块颜色
     set_color();
 
