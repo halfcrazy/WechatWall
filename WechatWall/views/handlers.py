@@ -18,13 +18,13 @@ class BaseHandler(tornado.web.RequestHandler):
 
     def write_error(self, status_code, **kwargs):
         if status_code == 404:
-            self.render('404.html') 
+            self.render('404.html')
         elif status_code == 500:
-            self.render('500.html') 
+            self.render('500.html')
         else:
             super(RequestHandler, self).write_error(status_code, **kwargs)
 
-    def get_remote_ip():
+    def get_remote_ip(self):
         return self.request.remote_ip
 
 
@@ -52,7 +52,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 
     def open(self):
         WSHandler.clients.add(self)
-        #self.write_message(object_to_json(InitData(id(self))))
+        # self.write_message(object_to_json(InitData(id(self))))
         WSHandler.broadcast(object_to_json(InitData(id(self))))
         print "new user %r" % id(self)
 
@@ -105,7 +105,7 @@ class ApiCategoryHandler(BaseHandler):
         top_rs = [dict({'id': i[0]}) for i in top_list]
 
         self.set_header("Content-Type", "application/json; charset=UTF-8")
-        self.write(json.dumps({'posts': post_rs, 'top': top_rs}, ensure_ascii=False))
+        self.write(json.dumps({'posts': post_rs, 'top': top_rs, 'statusCode': 200}, ensure_ascii=False))
         return
 
 
@@ -124,7 +124,7 @@ class ApiDetailHandler(BaseHandler):
                       for i in comment_list]
 
         self.set_header("Content-Type", "application/json; charset=UTF-8")
-        self.write(json.dumps({'post': post_rs, 'comments': comment_rs}, ensure_ascii=False))
+        self.write(json.dumps({'post': post_rs, 'comments': comment_rs, 'statusCode': 200}, ensure_ascii=False))
         return
 
 
@@ -136,7 +136,7 @@ class ApiReceiveHandler(BaseHandler):
                 message = self.get_argument("message", "")
                 if not message.strip():
                     self.set_header("Content-Type", "application/json; charset=UTF-8")
-                    self.write(json.dumps({'error': u'内容不能为空'}, ensure_ascii=False))
+                    self.write(json.dumps({'error': u'内容不能为空', 'statusCode': 405}, ensure_ascii=False))
                     return
 
                 author = self.get_argument("author", "")
@@ -146,15 +146,15 @@ class ApiReceiveHandler(BaseHandler):
                 category = self.get_argument("category", "")
                 if not category.isdigit():
                     self.set_header("Content-Type", "application/json; charset=UTF-8")
-                    self.write(json.dumps({'error': u'分类不能为空'}, ensure_ascii=False))
+                    self.write(json.dumps({'error': u'分类不能为空', 'statusCode': 405}, ensure_ascii=False))
                     return
 
-                self.post = Post(category_id=category, content=message, author=author)
+                self.post = Post(category_id=category, content=message, author=author, ip=self.get_remote_ip())
                 self.session.add(self.post)
                 self.session.commit()
 
                 self.set_header("Content-Type", "application/json; charset=UTF-8")
-                self.write(json.dumps({'status': u'post创建成功'}, ensure_ascii=False))
+                self.write(json.dumps({'status': u'post创建成功', 'statusCode': 200}, ensure_ascii=False))
                 return
 
             except Exception, e:
@@ -165,7 +165,7 @@ class ApiReceiveHandler(BaseHandler):
                 comment = self.get_argument("comment", "")
                 if not comment.strip():
                     self.set_header("Content-Type", "application/json; charset=UTF-8")
-                    self.write(json.dumps({'error': u'内容不能为空'}, ensure_ascii=False))
+                    self.write(json.dumps({'error': u'内容不能为空', 'statusCode': 405}, ensure_ascii=False))
                     return
 
                 author = self.get_argument("author", "")
@@ -173,12 +173,12 @@ class ApiReceiveHandler(BaseHandler):
                     author = generate_name()
                 reply_to = self.get_argument("reply_to", "")
 
-                self.comment = Comment(comment=comment, author=author, reply_to=reply_to)
+                self.comment = Comment(comment=comment, author=author, reply_to=reply_to, ip=self.get_remote_ip())
                 self.session.add(self.comment)
                 self.session.commit()
 
                 self.set_header("Content-Type", "application/json; charset=UTF-8")
-                self.write(json.dumps({'status': u'comment创建成功'}, ensure_ascii=False))
+                self.write(json.dumps({'status': u'comment创建成功', 'statusCode': 200}, ensure_ascii=False))
                 return
 
             except Exception, e:
