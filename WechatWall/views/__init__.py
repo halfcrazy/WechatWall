@@ -6,6 +6,7 @@ from handlers import WSHandler
 from handlers import ApiCategoryHandler
 from handlers import ApiDetailHandler
 from handlers import ApiReceiveHandler
+from handlers import PageNotFoundHandler
 
 handlers = [
     (r"/", IndexHandler),
@@ -13,4 +14,5 @@ handlers = [
     (r"/w/([0-9]+)", ApiCategoryHandler),
     (r"/t/([0-9]+)", ApiDetailHandler),
     (r"/post", ApiReceiveHandler),
+    (r".*", PageNotFoundHandler),
     ]

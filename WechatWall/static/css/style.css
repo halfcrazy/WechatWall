@@ -6,6 +6,9 @@ body {
 .sys-notification {
   background-color: white;
 }
+#twitter {
+  margin-bottom: 0px;
+}
 .post-form {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -83,23 +86,46 @@ body {
   top: -5px
 }
 @font-face{
-  font-family:'rosettaicons';
-  src:url('../fonts/rosetta-icons-Regular.eot');
-  src:url('../fonts/rosetta-icons-Regular.eot?#iefix') format('embedded-opentype'),url('../fonts/rosetta-icons-Regular.woff') format('woff'),url('../fonts/rosetta-icons-Regular.ttf') format('truetype');
-  font-style:normal;font-weight:normal;
+  font-family: 'rosettaicons';
+  src: url('../fonts/rosetta-icons-Regular.eot');
+  src: url('../fonts/rosetta-icons-Regular.eot?#iefix') format('embedded-opentype'),url('../fonts/rosetta-icons-Regular.woff') format('woff'),url('../fonts/rosetta-icons-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: normal;
 }
 .Icon{
-  background:transparent;
-  display:inline-block;
-  font-style:normal;
-  vertical-align:baseline;
+  background: transparent;
+  display: inline-block;
+  font-style: normal;
+  vertical-align: baseline;
 }
-.Icon:before{display:block;
-  font-family:"rosettaicons";
-  font-weight:normal;
-  font-style:normal;
-  text-align:center;
-  -webkit-font-smoothing:antialiased;
+.Icon:before{
+  display: block;
+  font-family: "rosettaicons";
+  font-weight: normal;
+  font-style: normal;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
 }
-.Icon--tweet:before{content:"\f029"}
-.Icon{font-size:19px;height:19px;position:relative;vertical-align:middle;width:17px}
+.Icon--tweet:before{
+  content: "\f029";
+}
+.Icon{
+  font-size: 19px;
+  height: 19px;
+  position: relative;
+  vertical-align: middle;
+  width: 17px；
+}
+
+.post a {
+  color: black;
+  text-decoration: none;
+}
+.post a:hover,
+.post a:focus {
+  color: black;
+  text-decoration: none;
+}
+.post a:focus {
+  outline: none;
+}

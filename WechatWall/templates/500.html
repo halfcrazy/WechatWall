@@ -1,0 +1,18 @@
+{% extends "error.html" %}
+
+{% block error_code %}
+500
+{% end %}
+
+{% block body %}
+<div id="error">
+  <a href="#">
+    <img src="{{ static_url('img/404.png') }}" alt="internal error" id="error404-image" />
+  </a>
+</div>
+
+<div class="error_message">
+   <h2>500错误</h2>
+   <p>抱歉，服务器开小差啦！管理员正在加紧恢复中！</p>
+</div>
+{% end %}

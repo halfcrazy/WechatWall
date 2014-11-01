@@ -16,8 +16,21 @@ class BaseHandler(tornado.web.RequestHandler):
     def on_finish(self):
         self.session.close()
 
+    def write_error(self, status_code, **kwargs):
+        if status_code == 404:
+            self.render('404.html') 
+        elif status_code == 500:
+            self.render('500.html') 
+        else:
+            super(RequestHandler, self).write_error(status_code, **kwargs)
+
     def get_remote_ip():
         return self.request.remote_ip
+
+
+class PageNotFoundHandler(BaseHandler):
+    def get(self):
+        raise tornado.web.HTTPError(404)
 
 
 class IndexHandler(tornado.web.RequestHandler):
@@ -39,7 +52,8 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 
     def open(self):
         WSHandler.clients.add(self)
-        self.write_message(object_to_json(InitData(id(self))))
+        #self.write_message(object_to_json(InitData(id(self))))
+        WSHandler.broadcast(object_to_json(InitData(id(self))))
         print "new user %r" % id(self)
 
     def on_message(self, message):
