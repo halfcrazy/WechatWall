@@ -4,7 +4,7 @@
 import json
 import tornado.web
 import tornado.websocket
-from ..utils import object_to_json, generate_name
+from ..utils import object_to_json, generate_name, datetime2timestamp
 from ..models import *
 from structure import InitData, CloseData, SyncData
 
@@ -67,38 +67,44 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 
 
 class ApiCategoryHandler(BaseHandler):
-    default_show_nums = 10
+    def get(self, category_id=0):
+        self.default_show_nums = 10
+        try:
+            category_id = int(category_id)
+        except:
+            raise tornado.web.HTTPError(500)
 
-    def get(self, category_id):
-        self.category_ids = self.session.query(Category.id).all()
-        if category_id not in self.category_ids:
-            # 主题分类不存在
-            print category_id, u"该主题id不存在"
-            raise tornado.web.HTTPError(404)
+        if category_id != 0:
+            self.category_ids = self.session.query(Category.id).all()
+            if (category_id,) not in self.category_ids:
+                # 主题分类不存在
+                print category_id, u"该主题id不存在"
+                raise tornado.web.HTTPError(404)
 
-        self.page = self.get_argument("p", 1)
-        if self.page < 1:
+        self.page_num = self.get_argument("p", 1)
+        if self.page_num < 1:
             # 页数错误
-            print self.page, u"页数错误"
+            print self.page_num, u"页数错误"
             raise tornado.web.HTTPError(404)
 
-        self.page = self.page - 1
+        self.page_num = self.page_num - 1
 
         if category_id == 0:
             post_list = self.session.query(Post.id, Post.category_id, Post.content, Post.author, Post.created_at) \
                                     .order_by(Post.id.desc()) \
-                                    .offset(default_show_nums * self.page) \
-                                    .limit(default_show_nums) \
+                                    .offset(self.default_show_nums * self.page_num) \
+                                    .limit(self.default_show_nums) \
                                     .all()
         else:
-            post_list = self.session.query(Post.id, Post.category_id, Post.content, Post.created_at) \
+            post_list = self.session.query(Post.id, Post.category_id, Post.content, Post.author, Post.created_at) \
                                     .filter(Post.category_id == category_id) \
                                     .order_by(Post.id.desc()) \
-                                    .offset(default_show_nums * self.page) \
-                                    .limit(default_show_nums) \
+                                    .offset(self.default_show_nums * self.page_num) \
+                                    .limit(self.default_show_nums) \
                                     .all()
 
-        post_rs = [dict({'id': i[0], 'category_id': i[1], 'content': i[2].encode('utf-8'), 'created_at': i[3]}) for i in post_list]
+        post_rs = [dict({'id': i[0], 'category_id': i[1], 'content': i[2].encode('utf-8'), 'author':i[3], 'created_at': datetime2timestamp(i[4])})
+                   for i in post_list]
 
         top_list = self.session.query(Top.id).filter(Top.category_id == category_id).all()
 
@@ -110,12 +116,12 @@ class ApiCategoryHandler(BaseHandler):
 
 
 class ApiDetailHandler(BaseHandler):
-    def get(self, content_id):
-        post = self.session.query(Content.id, Content.category_id, Content.content, Content.created_at) \
-                           .filter(Content.id == content_id) \
+    def get(self, post_id):
+        post = self.session.query(Post.id, Post.category_id, Post.content, Post.author, Post.created_at) \
+                           .filter(Post.id == post_id) \
                            .one()
         comment_list = self.session.query(Comment.id, Comment.comment, Comment.author, Comment.reply_to, Comment.created_at) \
-                                   .filter(Comment.reply_to == content_id) \
+                                   .filter(Comment.reply_to == post_id) \
                                    .order_by(Comment.created_at) \
                                    .all()
 
