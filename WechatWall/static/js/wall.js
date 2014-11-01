@@ -7,7 +7,6 @@ function html_escape(a){
 }
 
 function pretty_date(ts) {
-function pretty_date(ts) {
     var timestamp = new Date().getTime() / 1000;
     var second_diff = timestamp - ts;
     var day_diff = Math.floor(second_diff / 86400);
