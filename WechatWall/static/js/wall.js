@@ -1,63 +1,3 @@
-function html_escape(a){
-    return a.replace('&', '&amp;', 'g')
-            .replace('<', '&lt;', 'g')
-            .replace('>', '&gt;', 'g')
-            .replace('"', '&quot;', 'g')
-            .replace("'", '&#39;', 'g');
-}
-
-function pretty_date(ts) {
-    var timestamp = new Date().getTime() / 1000;
-    var second_diff = timestamp - ts;
-    var day_diff = Math.floor(second_diff / 86400);
-    if (day_diff < 0) {
-        return "";
-    }
-    if (day_diff == 0) {
-        if (second_diff < 10) {
-            return "just now";
-        }
-        if (second_diff < 60) {
-            return second_diff + " seconds ago";
-        }
-        if (second_diff < 120) {
-            return "a minute ago";
-        }
-        if (second_diff < 3600) {
-            return Math.floor(second_diff / 60) + " minutes ago";
-        }
-        if (second_diff < 7200) {
-            return "an hour ago";
-        }
-        if (second_diff < 86400) {
-            return Math.floor(second_diff / 3600) + " hours ago";
-        }
-    }
-    if (day_diff == 1) {
-        return "Yesterday";
-    }
-    if (day_diff < 7) {
-        return day_diff + " days ago";
-    }
-    if (day_diff < 31) {
-        return Math.floor(day_diff / 7) + " weeks ago";
-    }
-    if (day_diff < 365) {
-        return Math.floor(day_diff / 30) + " months ago";
-    }
-    return Math.floor(day_diff / 365) + " years ago";
-}
-
-function set_color () {
-    //设置内容背景颜色
-    var color_list = ["#FAB5A5","#D1E1C6","#FFFF99","#99CCFF"];
-    var myDate = new Date();
-    var sec = myDate.getSeconds();
-    $.each($(".post"),function(idx,val){
-        $(this).css({"background-color":color_list[(sec+idx)%color_list.length]});
-    });
-}
-
 var updater = {
     socket: null,
 
@@ -96,24 +36,9 @@ var updater = {
     }
 };
 
-function getCookie(name) {
-    var r = document.cookie.match("\\b" + name + "=([^;]*)\\b");
-    return r ? r[1] : undefined;
-}
-
 $(function(){
     //设置顶部滚动文字
-    $("#twitter li:not(:first)").css("display","none");
-    var B=$("#twitter li:last");
-    var C=$("#twitter li:first");
-    setInterval(function(){
-    if(B.is(":visible")){
-    C.fadeIn(500).addClass("in");B.hide()
-    }else{
-    $("#twitter li:visible").addClass("in");
-    $("#twitter li.in").next().fadeIn(500);
-    $("li.in").hide().removeClass("in")}
-    },3000); //每3秒钟切换一条，你可以根据需要更改
+    set_scroll_notification();
 
     //设置下拉菜单样式
     //$('select[name="inverse-dropdown"], select[name="inverse-dropdown-optgroup"], select[name="inverse-dropdown-disabled"]').select2({dropdownCssClass: 'select-inverse-dropdown'});
@@ -133,9 +58,9 @@ $(function(){
     var last_gesture = "";
     mc.on("panend panleft panright", function(ev) {
         if(ev.type=="panend"){
-            if(last_gesture=="panleft"){
+            if(last_gesture=="panright"){
                 $("#category-nav li[class=active]").prev("li").trigger("click");
-            }else if(last_gesture=="panright"){
+            }else if(last_gesture=="panleft"){
                 $("#category-nav li[class=active]").next("li").trigger("click");
             }
         }else{
