@@ -12,7 +12,7 @@ def object_to_json(obj):
 
 def generate_name():
     """Generate random nickname for those who does'n specified nickname"""
-    word = ["甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸", "子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"]
+    word = [u"甲", u"乙", u"丙", u"丁", u"戊", u"己", u"庚", u"辛", u"壬", u"癸", u"子", u"丑", u"寅", u"卯", u"辰", u"巳", u"午", u"未", u"申", u"酉", u"戌", u"亥"]
     return "".join(random.sample(word, 6))
 
 
