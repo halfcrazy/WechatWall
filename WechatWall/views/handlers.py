@@ -90,20 +90,21 @@ class ApiCategoryHandler(BaseHandler):
         self.page_num = self.page_num - 1
 
         if category_id == 0:
-            post_list = self.session.query(Post.id, Post.category_id, Post.content, Post.author, Post.created_at) \
+            post_list = self.session.query(Post.id, Post.category_id, Post.content, Post.author, Post.created_at, Post.click_num, Post.comment_num) \
                                     .order_by(Post.id.desc()) \
                                     .offset(self.default_show_nums * self.page_num) \
                                     .limit(self.default_show_nums) \
                                     .all()
         else:
-            post_list = self.session.query(Post.id, Post.category_id, Post.content, Post.author, Post.created_at) \
+            post_list = self.session.query(Post.id, Post.category_id, Post.content, Post.author, Post.created_at, Post.click_num, Post.comment_num) \
                                     .filter(Post.category_id == category_id) \
                                     .order_by(Post.id.desc()) \
                                     .offset(self.default_show_nums * self.page_num) \
                                     .limit(self.default_show_nums) \
                                     .all()
 
-        post_rs = [dict({'id': i[0], 'category_id': i[1], 'content': i[2].encode('utf-8'), 'author':i[3], 'created_at': datetime2timestamp(i[4])})
+        post_rs = [dict({'id': i[0], 'category_id': i[1], 'content': i[2].encode('utf-8'), 'author':i[3].encode('utf-8'),
+                        'created_at': datetime2timestamp(i[4]), 'click_num': i[5], 'comment_num': i[6]})
                    for i in post_list]
 
         top_list = self.session.query(Top.id).filter(Top.category_id == category_id).all()
@@ -117,15 +118,17 @@ class ApiCategoryHandler(BaseHandler):
 
 class ApiDetailHandler(BaseHandler):
     def get(self, post_id):
-        post = self.session.query(Post.id, Post.category_id, Post.content, Post.author, Post.created_at) \
+        post = self.session.query(Post.id, Post.category_id, Post.content, Post.author, Post.created_at, Post.click_num, Post.comment_num) \
                            .filter(Post.id == post_id) \
                            .one()
-        comment_list = self.session.query(Comment.id, Comment.comment, Comment.author, Comment.reply_to, Comment.created_at) \
+        comment_list = self.session.query(Comment.id, Comment.comment, Comment.author, Comment.kind, Comment.reply_to, Comment.created_at) \
                                    .filter(Comment.reply_to == post_id) \
                                    .order_by(Comment.created_at) \
                                    .all()
 
-        post_rs = [dict({'id': i[0], 'category_id': i[1], 'content': i[2].encode('utf-8'), 'created_at': i[3]}) for i in post_list]
+        post_rs = dict({'id': post[0], 'category_id': post[1], 'content': post[2].encode('utf-8'), 'author':post[3].encode('utf-8'),
+                        'created_at': datetime2timestamp(post[4]), 'click_num': post[5], 'comment_num': post[6]})
+
         comment_rs = [dict({'id': i[0], 'comment': i[1].encode('utf-8'), 'author': i[2].encode('utf-8'), 'reply_to': i[3], 'created_at': i[4]})
                       for i in comment_list]
 
