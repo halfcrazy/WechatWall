@@ -8,6 +8,9 @@ body {
 html, body {
   height: 100%;
 }
+#header-nav {
+  margin-bottom: 15px;
+}
 .wrapper {
   min-height: 100%;
   margin: 0 auto -59px; /* the bottom margin is the negative value of the footer's height */
@@ -21,6 +24,11 @@ footer, .push {
 }
 .sys-notification {
   background-color: white;
+}
+@media screen and (max-width: 768px) {
+  .sys-notification li{
+    font-size: small;
+  }
 }
 #twitter {
   margin-bottom: 0px;
@@ -39,8 +47,14 @@ footer, .push {
 .form-area {
   margin-bottom: 10px;
 }
+#category-nav {
+  margin-top: 10px;
+}
+#category-nav a {
+  padding: 5px;
+}
 .post-list {
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .post-editor {
   margin-top: 10px;
