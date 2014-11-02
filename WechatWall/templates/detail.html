@@ -6,7 +6,6 @@
     <title>小助手微信墙</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="shortcut icon" type="image/png" href="{{ static_url('img/favicon.ico') }}">
-    <link rel="stylesheet" href="{{ static_url("css/normalize.css") }}">
     <link rel="stylesheet" href="{{ static_url("css/vendor/bootstrap.min.css") }}">
     <link rel="stylesheet" href="{{ static_url("css/flat-ui.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ static_url("css/style.css") }}">
@@ -28,18 +27,6 @@
       <li><a href="#">最新消息<span class="navbar-new">1</span></a></li>
       <li><a href="#">关于我们</a></li>
     </ul>
-    <!--
-    <form class="navbar-form navbar-right" action="#" role="search">
-      <div class="form-group">
-        <div class="input-group">
-          <input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
-          <span class="input-group-btn">
-            <button type="submit" class="btn"><span class="fui-search"></span></button>
-          </span>
-        </div>
-      </div>
-    </form>
-    -->
   </div>
 </div>
 </nav>
@@ -57,6 +44,22 @@
           </ul>
         </div>
       </div>
+      <div class="post-info">
+
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+            <div class="post-to-comment">
+            <a href="/"><<回到微信墙</a>
+            <p class="text-left info">魑魅魍魉</p>
+            <p class="text-left">3 hours ago</p>
+            <p class="text-left">这是一条表白</p>
+            <p class="text-left">点击100</p>
+            <p class="text-left">今天我想早点睡觉</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
 
       <div class="post-editor">
 
@@ -64,20 +67,11 @@
           <div class="col-md-8 col-md-offset-2 post-form">
             <form action="#" id="myform" class="form">
               <div class="form-group form-area">
-                <lable for="content">发表内容</lable>
+                <lable for="content">发表评论</lable>
                 <textarea class="form-control" id="content" name="content" placeholder="在这里输入你想说的话" rows="2"></textarea>
                 <div class="form-inline">
                   <div class="row editor-control">
                     <!--<div class="pull-right">-->
-                      <div class="col-md-4 col-sm-5 col-xs-4">
-                        <div class="form-group">
-                          <select data-toggle="select" id="category" name="category" class="select select-danger mrs mbm" id="category-select">
-                            <option value="1">表白</option>
-                            <option value="2">吐槽</option>
-                            <option value="3">心愿</option>
-                          </select>
-                        </div>
-                      </div>
                       <div class="col-md-4 col-sm-3 col-xs-5">
                         <div class="form-group">
                             <input type="text" id="nickname" name="nickname" class="form-control" placeholder="昵称">
@@ -98,39 +92,9 @@
 
       </div>
 
-    <div id="category-nav">
-      <div class="row">
-        <div class="col-md-offset-2">
-          <ul class="nav nav-pills" role="tablist">
-            <li role="presentation" class="active"><a href="#">全部</a></li>
-            <li role="presentation"><a href="#">表白</a></li>
-            <li role="presentation"><a href="#">吐槽</a></li>
-            <li role="presentation"><a href="#">心愿</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
     <section class="post-list">
-    <!--new post will fill up here-->
-    </section>
 
-      <div class="page-num">
-        <ul class="pagination-plain">
-          <li class="previous"><a href="#fakelink">← Previous</a></li>
-          <li><a href="#fakelink">1</a></li>
-          <li><a href="#fakelink">2</a></li>
-          <li><a href="#fakelink">3</a></li>
-          <li><a href="#fakelink">4</a></li>
-          <li class="active"><a href="#fakelink">5</a></li>
-          <li><a href="#fakelink">6</a></li>
-          <li><a href="#fakelink">7</a></li>
-          <li><a href="#fakelink">8</a></li>
-          <li><a href="#fakelink">9</a></li>
-          <li><a href="#fakelink">10</a></li>
-          <li class="next"><a href="#fakelink">Newer →</a></li>
-        </ul>
-      </div>
+    </section>
 
     </div>
 
@@ -161,7 +125,6 @@
 <script src="{{ static_url("js/vendor/jquery.min.js") }}"></script>
 <script src="{{ static_url("js/jquery.cookie.js") }}"></script>
 <script src="{{ static_url("js/flat-ui.min.js") }}"></script>
-<script src="{{ static_url("js/hammer.min.js") }}"></script>
 <script src="{{ static_url("js/phasebeam.js") }}"></script>
 <script src="{{ static_url("js/wall.js") }}"></script>
 
