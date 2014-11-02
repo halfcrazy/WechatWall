@@ -118,6 +118,8 @@ class ApiCategoryHandler(BaseHandler):
 
 class ApiDetailHandler(BaseHandler):
     def get(self, post_id):
+        self.session.query(Post).filter(Post.id == post_id).update({'click_num': Post.click_num + 1})
+        self.session.commit()
         post = self.session.query(Post.id, Post.category_id, Post.content, Post.author, Post.created_at, Post.click_num, Post.comment_num) \
                            .filter(Post.id == post_id) \
                            .one()
@@ -135,6 +137,11 @@ class ApiDetailHandler(BaseHandler):
         self.set_header("Content-Type", "application/json; charset=UTF-8")
         self.write(json.dumps({'post': post_rs, 'comments': comment_rs, 'statusCode': 200}, ensure_ascii=False))
         return
+
+
+class PostHandler(BaseHandler):
+    def get(self,post_id):
+        self.render("detail.html",post_id=post_id)
 
 
 class ApiReceiveHandler(BaseHandler):

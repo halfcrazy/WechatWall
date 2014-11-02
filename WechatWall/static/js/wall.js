@@ -144,7 +144,7 @@ $(function(){
     });
 
     //首次加载内容
-    $.getJSON("/w/0", function(data) {
+    $.getJSON("/api/w/0", function(data) {
         var obj = data;
         if(obj.statusCode==200){
             console.log(obj.posts);
@@ -152,10 +152,10 @@ $(function(){
             $.each(obj.posts,function(idx,post){
                 //post.category_id,post_id
                 var HTML = '<div class="row"><div class="col-md-2"></div><div class="col-md-8"><div class="post">'
-                +'<a href="http://www.baidu.com" target="_blank">'
+                +'<a href="/t/'+post.id+'" target="_blank">'
                 +'<p class="text-left info">'
                 +'#'+post.id
-                +' 点:63 评:7'
+                +' 点:'+post.click_num+' 评:'+post.comment_num
                 +'</p><p class="text-left">'
                 +html_escape(post.content)
                 +'</p><p class="text-right">'
@@ -184,7 +184,7 @@ $(function(){
             category:$("#category").val(),
             nickname:$("#nickname").val()
         }
-        $.post("/post",{
+        $.post("/api/post",{
             _xsrf: getCookie("_xsrf"),
             kind: "post",
             message: $("#content").val(),
