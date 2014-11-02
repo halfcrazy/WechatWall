@@ -13,7 +13,8 @@ class Post(Base):
     category_id = Column(Integer)
     content = Column(String(140))
     author = Column(String(20))
-    click = Column(Integer, default=0)
+    click_num = Column(Integer, default=0)
+    comment_num = Column(Integer, default=0)
     ip = Column(String(20))
     created_at = Column(DateTime, default=datetime.datetime.now)
 
