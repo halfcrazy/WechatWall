@@ -170,3 +170,6 @@ footer, .push {
 .post-to-comment p {
   line-height: 0.3em;
 }
+.post-to-comment blockquote p{
+  line-height: 1em;
+}

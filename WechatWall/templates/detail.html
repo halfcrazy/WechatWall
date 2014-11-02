@@ -47,15 +47,15 @@
       <div class="post-info">
 
         <div class="row">
-          <div class="col-md-8 col-md-offset-2">
-            <div class="post-to-comment">
+          <div class="col-md-8 col-md-offset-2 post-to-comment">
             <a href="/"><<回到微信墙</a>
-            <p class="text-left info">魑魅魍魉</p>
-            <p class="text-left">3 hours ago</p>
-            <p class="text-left">这是一条表白</p>
-            <p class="text-left">点击100</p>
-            <p class="text-left">今天我想早点睡觉</p>
-            </div>
+            <p class="text-left">这是一条<em>表白</em></p>
+            <blockquote>
+              <p>今天我想早点睡觉</p>
+            </blockquote>
+            <p class="text-right">魑魅魍魉</p>
+            <p class="text-right">3 hours ago</p>
+            <p class="text-right">点击100</p>
           </div>
         </div>
 
@@ -93,7 +93,8 @@
       </div>
 
     <section class="post-list">
-
+    <!--comments will fill up here-->
+    <p>暂无评论</p>
     </section>
 
     </div>
@@ -115,7 +116,6 @@
     </ul>
       <ul class="list-inline text-center">
         <li>Producted by <a href="http://csxyxzs.sinaapp.com/page/about.htm" target="_blank">城市学院小助手</a></li>
-        <!--<li>联系我Q 694930058</li>-->
       </ul>
     </div>
   </div>
@@ -126,7 +126,8 @@
 <script src="{{ static_url("js/jquery.cookie.js") }}"></script>
 <script src="{{ static_url("js/flat-ui.min.js") }}"></script>
 <script src="{{ static_url("js/phasebeam.js") }}"></script>
-<script src="{{ static_url("js/wall.js") }}"></script>
+<script src="{{ static_url("js/utils.js") }}"></script>
+<script src="{{ static_url("js/detail.js") }}"></script>
 
 </body>
 
