@@ -188,7 +188,7 @@ class ApiReceiveHandler(BaseHandler):
                 if not author.strip():
                     author = generate_name()
                 reply_to = self.get_argument("reply_to", "")
-
+                print reply_to
                 self.comment = Comment(comment=comment, author=author, reply_to=reply_to, ip=self.get_remote_ip())
                 self.session.add(self.comment)
                 self.session.commit()

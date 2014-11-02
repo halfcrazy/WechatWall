@@ -10,10 +10,10 @@ $(function() {
             console.log(obj);
             var items = [];
             $.each(obj.comments,function(idx,comment){
-                //post.category_id,post_id
+                //comment的id需要处理成线性的
                 var HTML = '<div class="row"><div class="col-md-2"></div><div class="col-md-8"><div class="post">'
                 +'<p class="text-left info">'
-                +'#'+comment.id
+                +'#'+(idx+1)
                 +'</p><p class="text-left">'
                 +html_escape(comment.comment)
                 +'</p><p class="text-right">'
@@ -28,6 +28,19 @@ $(function() {
             return;
         }
         $(".post-list").prepend(items.join(""));
+        set_color();
     });
-    set_color();
+
+    $("#submit_btn").click(function() {
+        $.post("/api/post",{
+            _xsrf: getCookie("_xsrf"),
+            kind: "comment",
+            comment: $("#content").val(),
+            author: $("#nickname").val(),
+            reply_to: post_id,
+        },function (data,textStatus) {
+            console.log(data);
+        });
+        return false;
+    });
 });
