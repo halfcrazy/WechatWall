@@ -89,21 +89,6 @@ footer, .push {
   margin-top: 15px;
   text-align: center;
 }
-#phasebeam {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-}
-#phasebeam canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
 .footer {
   line-height: 0.8em;
   margin-bottom: 0px;
@@ -172,4 +157,17 @@ footer, .push {
 }
 .post-to-comment blockquote p{
   line-height: 1em;
+}
+/* Back to Top */
+.back-to-top {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+.back-to-top a {
+  width: 35px;
+  height: 35px;
+  text-indent: -20000px;
+  display: block;
+  background-image: url("../img/up-arrow.png");
 }

@@ -18,7 +18,7 @@ function pretty_date(ts) {
             return "just now";
         }
         if (second_diff < 60) {
-            return second_diff + " seconds ago";
+            return Math.floor(second_diff) + " seconds ago";
         }
         if (second_diff < 120) {
             return "a minute ago";
@@ -47,10 +47,12 @@ function pretty_date(ts) {
     }
     return Math.floor(day_diff / 365) + " years ago";
 }
+
 function getCookie(name) {
     var r = document.cookie.match("\\b" + name + "=([^;]*)\\b");
     return r ? r[1] : undefined;
 }
+
 function set_scroll_notification () {
     $("#twitter li:not(:first)").css("display","none");
     var B=$("#twitter li:last");
@@ -64,6 +66,7 @@ function set_scroll_notification () {
     $("li.in").hide().removeClass("in")}
     },3000); //每3秒钟切换一条，你可以根据需要更改
 }
+
 function set_color () {
     //设置内容背景颜色
     var color_list = ["#FAB5A5","#D1E1C6","#FFFF99","#99CCFF"];
@@ -71,5 +74,26 @@ function set_color () {
     var sec = myDate.getSeconds();
     $.each($(".post"),function(idx,val){
         $(this).css({"background-color":color_list[(sec+idx)%color_list.length]});
+    });
+}
+
+function back_to_top () {
+    // hide #back-top first
+    $(".back-to-top").hide();
+    // fade in .back-to-top
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+            $('.back-to-top').fadeIn();
+        } else {
+            $('.back-to-top').fadeOut();
+        }
+    });
+
+    // scroll body to 0px on click
+    $('.back-to-top a').click(function () {
+        $('body,html').animate({
+            scrollTop: 0
+        }, 800);
+        return false;
     });
 }
