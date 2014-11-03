@@ -137,14 +137,14 @@ $(function(){
         },function (data,textStatus) {
             if(data.statusCode==200){
                 var HTML = '<div class="row"><div class="col-md-2"></div><div class="col-md-8"><div class="post">'
-                    +'<a href="/t/'+(data.post_id-1)+'" target="_blank">'
+                    +'<a href="/t/'+(data.post_id)+'" target="_blank">'
                     +'<p class="text-left info">'
-                    +'#'+(data.post_id-1)
+                    +'#'+(data.post_id)
                     +' 点:0 评:0'
                     +'</p><p class="text-left">'
                     +html_escape(message)
                     +'</p><p class="text-right">'
-                    +html_escape(author)
+                    +html_escape(data.author)
                     +'</p><p class="text-right">'
                     +'just now'
                     +'</p>'
