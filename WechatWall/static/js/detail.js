@@ -4,28 +4,46 @@ function load_comment_post (post_id) {
         var obj = data;
         if(obj.statusCode==200){
             console.log(obj);
-            var items = [];
-            $.each(obj.comments,function(idx,comment){
-                var HTML = '<div class="row"><div class="col-md-2"></div><div class="col-md-8">'
-                +'<div class="post" '+'data-id="'+(idx+1)+'">'
-                +'<p class="text-left info">'
-                +'#'+(idx+1)
-                +'</p><p class="text-left">'
-                +html_escape(comment.comment)
-                +'</p><p class="text-right">'
-                +html_escape(comment.author)
-                +'</p><p class="text-right">'
-                +pretty_date(comment.created_at)
-                +'</p>'
-                +'</div></div><div class="col-md-2"></div></div>';
-                items.push(HTML);
-            });
-        }else{
+            if(obj.comments.length>0){
+                var items = [];
+                $.each(obj.comments,function(idx,comment){
+                    var HTML = '<div class="row"><div class="col-md-2"></div><div class="col-md-8">'
+                    +'<div class="post" '+'data-id="'+(idx+1)+'">'
+                    +'<p class="text-left info">'
+                    +'#'+(idx+1)
+                    +'</p><p class="text-left">'
+                    +html_escape(comment.comment)
+                    +'</p><p class="text-right">'
+                    +html_escape(comment.author)
+                    +'</p><p class="text-right">'
+                    +pretty_date(comment.created_at)
+                    +'</p>'
+                    +'</div></div><div class="col-md-2"></div></div>';
+                    items.push(HTML);
+                });
+                $(".post-list").prepend(items.reverse().join(""));
+                set_color();
+            }
+            else{
+                var HTML = '<div class="row">'
+                            +'<div class="col-md-2"></div>'
+                            +'<div class="col-md-8">'
+                                +'<div class="transparent">'
+                                    +'<div class="inner" style="text-align:center">'
+                                        +'<span style="color:rgba(0,0,0,0,25);">目前尚无评论</span>'
+                                    +'</div>'
+                                +'</div>'
+                            +'</div>'
+                            +'<div class="col-md-2">'
+                            +'</div>'
+                            +'</div>';
+                $(".post-list").prepend(HTML);
+            }
+        }
+        else{
             return;
         }
 
-        $(".post-list").prepend(items.reverse().join(""));
-        set_color();
     });
 }
 $(function() {

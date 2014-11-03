@@ -42,31 +42,34 @@ function load_category(category,page){
         var obj = data;
         if(obj.statusCode==200){
             console.log(obj.posts);
-            var items = [];
-            $.each(obj.posts,function(idx,post){
-                //post.category_id,post_id
-                var HTML = '<div class="row"><div class="col-md-2"></div><div class="col-md-8"><div class="post">'
-                +'<a href="/t/'+post.id+'" target="_blank">'
-                +'<p class="text-left info">'
-                +'#'+post.id
-                +' 点:'+post.click_num+' 评:'+post.comment_num
-                +'</p><p class="text-left">'
-                +html_escape(post.content)
-                +'</p><p class="text-right">'
-                +html_escape(post.author)
-                +'</p><p class="text-right">'
-                +pretty_date(post.created_at)
-                +'</p>'
-                +'</a>'
-                +'</div></div><div class="col-md-2"></div></div>';
-                items.push(HTML);
-            });
-        }else{
+            if(obj.posts.length>0){
+                var items = [];
+                $.each(obj.posts,function(idx,post){
+                    //post.category_id,post_id
+                    var HTML = '<div class="row"><div class="col-md-2"></div><div class="col-md-8"><div class="post">'
+                    +'<a href="/t/'+post.id+'" target="_blank">'
+                    +'<p class="text-left info">'
+                    +'#'+post.id
+                    +' 点:'+post.click_num+' 评:'+post.comment_num
+                    +'</p><p class="text-left">'
+                    +html_escape(post.content)
+                    +'</p><p class="text-right">'
+                    +html_escape(post.author)
+                    +'</p><p class="text-right">'
+                    +pretty_date(post.created_at)
+                    +'</p>'
+                    +'</a>'
+                    +'</div></div><div class="col-md-2"></div></div>';
+                    items.push(HTML);
+                });
+                $(".post-list").append(items.join(""));
+                //设置post块颜色
+                set_color();
+            }
+        }
+        else{
             return;
         }
-        $(".post-list").prepend(items.join(""));
-        //设置post块颜色
-        set_color();
     });
 }
 $(function(){
@@ -103,7 +106,16 @@ $(function(){
         }
     });
 
-    load_category(0,1);
+    page_num = 1;
+    load_category(0,page_num);
+    $(window).scroll(function(){
+        // 当滚动到最底部以上300像素时， 加载新内容
+        //已经可以成功加载，不过加载条件似乎有问题。
+        if ($(document).height() - $(this).scrollTop() - $(this).height()<100){
+            page_num++;
+            load_category(0,page_num);
+        }
+    });
 
     //开启ws
     updater.start();

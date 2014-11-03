@@ -175,3 +175,14 @@ footer, .push {
   display: block;
   background-image: url("../img/up-arrow.png");
 }
+.transparent {
+    background-color: transparent;
+    border: 2px dashed rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    box-shadow: none;
+}  
+.inner {
+    padding: 10px;
+    line-height: 150%;
+    text-align: left;
+}
