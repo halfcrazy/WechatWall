@@ -53,3 +53,5 @@ TODO
 
 Issue
 ====
+
+ * While on wechat embeded browser, the _csrf cookie seems could not be read. And result the post can't be admitted by server.
