@@ -46,8 +46,8 @@ TODO
  * 做心跳检测客户端状态，适当断开连接，节省资源
  * Support sql schema import.
  * Embed AC face to texting. 
- * Frontend interface.
-
+ * Frontend interface.(Almost done, some details need to be imporved.)
+ * Category nav-pills switch.
 
 Issue
 ====
