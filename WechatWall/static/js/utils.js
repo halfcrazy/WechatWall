@@ -93,7 +93,7 @@ function back_to_top () {
     $('.back-to-top a').click(function () {
         $('body,html').animate({
             scrollTop: 0
-        }, 800);
+        }, 400);
         return false;
     });
 }
