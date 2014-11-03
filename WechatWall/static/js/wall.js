@@ -41,7 +41,6 @@ function load_category(category,page){
     $.getJSON("/api/w/"+category+"?p="+page, function(data) {
         var obj = data;
         if(obj.statusCode==200){
-            console.log(obj.posts);
             if(obj.posts.length>0){
                 var items = [];
                 $.each(obj.posts,function(idx,post){
@@ -65,6 +64,9 @@ function load_category(category,page){
                 $(".post-list").append(items.join(""));
                 //设置post块颜色
                 set_color();
+            }
+            else{
+                $("#pinterestDone").show();
             }
         }
         else{
@@ -106,11 +108,11 @@ $(function(){
         }
     });
 
+    //处理底部加载完毕
+    $("#pinterestDone").hide();
     page_num = 1;
     load_category(0,page_num);
     $(window).scroll(function(){
-        // 当滚动到最底部以上300像素时， 加载新内容
-        //已经可以成功加载，不过加载条件似乎有问题。
         if ($(document).height() - $(this).scrollTop() - $(this).height()<100){
             page_num++;
             load_category(0,page_num);
@@ -118,25 +120,47 @@ $(function(){
     });
 
     //开启ws
-    updater.start();
+    //updater.start();
 
     $("#submit_btn").click(function() {
-        var msg = {
-            content:$("#content").val(),
-            category:$("#category").val(),
-            nickname:$("#nickname").val()
-        }
+        var message = $("#content").val();
+        var author = $("#nickname").val();
+        var category = $("#category").val(); 
+        var ts = Date.parse(new Date()); 
+
         $.post("/api/post",{
             _xsrf: getCookie("_xsrf"),
             kind: "post",
-            message: $("#content").val(),
-            author: $("#nickname").val(),
-            category: $("#category").val()
+            message: message,
+            author: author,
+            category: category,
         },function (data,textStatus) {
-            console.log(data);
+            if(data.statusCode==200){
+                var HTML = '<div class="row"><div class="col-md-2"></div><div class="col-md-8"><div class="post">'
+                    +'<a href="/t/'+(data.post_id-1)+'" target="_blank">'
+                    +'<p class="text-left info">'
+                    +'#'+(data.post_id-1)
+                    +' 点:0 评:0'
+                    +'</p><p class="text-left">'
+                    +html_escape(message)
+                    +'</p><p class="text-right">'
+                    +html_escape(author)
+                    +'</p><p class="text-right">'
+                    +'just now'
+                    +'</p>'
+                    +'</a>'
+                    +'</div></div><div class="col-md-2"></div></div>';
+                $(".post-list").prepend(HTML);
+                set_color();
+                layer.msg('发送成功', 2, -1);
+                $("#content").val("");
+            }
+            else{
+                layer.msg('发送失败', 2, -1);
+            }
+
         });
-        updater.socket.send(JSON.stringify(msg));
-        console.log(JSON.stringify(msg));
+        //updater.socket.send(JSON.stringify(msg));
         return false;
     });
 

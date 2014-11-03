@@ -6,6 +6,10 @@ function html_escape(a){
             .replace("'", '&#39;', 'g');
 }
 
+function get_category (category_id) {
+    var category = ['全部','表白','吐槽','心愿'];
+    return category[category_id];
+}
 function pretty_date(ts) {
     var timestamp = new Date().getTime() / 1000;
     var second_diff = timestamp - ts;

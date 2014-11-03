@@ -171,7 +171,7 @@ class ApiReceiveHandler(BaseHandler):
                 self.session.commit()
 
                 self.set_header("Content-Type", "application/json; charset=UTF-8")
-                self.write(json.dumps({'status': u'post创建成功', 'statusCode': 200}, ensure_ascii=False))
+                self.write(json.dumps({'status': u'post创建成功', 'post_id': self.post.id, 'author': author, 'statusCode': 200}, ensure_ascii=False))
                 return
 
             except Exception, e:
@@ -197,7 +197,7 @@ class ApiReceiveHandler(BaseHandler):
                 self.session.commit()
 
                 self.set_header("Content-Type", "application/json; charset=UTF-8")
-                self.write(json.dumps({'status': u'comment创建成功', 'statusCode': 200}, ensure_ascii=False))
+                self.write(json.dumps({'status': u'comment创建成功', 'author': author, 'statusCode': 200}, ensure_ascii=False))
                 return
 
             except Exception, e:
