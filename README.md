@@ -48,6 +48,8 @@ TODO
  * Embed AC face to texting. 
  * Frontend interface.(Almost done, some details need to be imporved.)
  * Category nav-pills switch.
+ * Use cookie to store author name.
+ * Find a method to cache the post data. Reduce burden to server.
 
 Issue
 ====
