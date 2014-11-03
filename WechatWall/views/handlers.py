@@ -81,7 +81,7 @@ class ApiCategoryHandler(BaseHandler):
                 print category_id, u"该主题id不存在"
                 raise tornado.web.HTTPError(404)
 
-        self.page_num = self.get_argument("p", 1)
+        self.page_num = int(self.get_argument("p", 1))
         if self.page_num < 1:
             # 页数错误
             print self.page_num, u"页数错误"
@@ -128,10 +128,11 @@ class ApiDetailHandler(BaseHandler):
                                    .order_by(Comment.created_at) \
                                    .all()
 
-        post_rs = dict({'id': post[0], 'category_id': post[1], 'content': post[2].encode('utf-8'), 'author':post[3].encode('utf-8'),
+        post_rs = dict({'id': post[0], 'category_id': post[1], 'content': post[2].encode('utf-8'), 'author': post[3].encode('utf-8'),
                         'created_at': datetime2timestamp(post[4]), 'click_num': post[5], 'comment_num': post[6]})
 
-        comment_rs = [dict({'id': i[0], 'comment': i[1].encode('utf-8'), 'author': i[2].encode('utf-8'), 'reply_to': i[3], 'created_at': i[4]})
+        comment_rs = [dict({'id': i[0], 'comment': i[1].encode('utf-8'), 'author': i[2].encode('utf-8'),
+                            'reply_to': i[4], 'created_at': datetime2timestamp(i[5])})
                       for i in comment_list]
 
         self.set_header("Content-Type", "application/json; charset=UTF-8")
@@ -140,8 +141,8 @@ class ApiDetailHandler(BaseHandler):
 
 
 class PostHandler(BaseHandler):
-    def get(self,post_id):
-        self.render("detail.html",post_id=post_id)
+    def get(self, post_id):
+        self.render("detail.html", post_id=post_id)
 
 
 class ApiReceiveHandler(BaseHandler):
@@ -188,9 +189,11 @@ class ApiReceiveHandler(BaseHandler):
                 if not author.strip():
                     author = generate_name()
                 reply_to = self.get_argument("reply_to", "")
-                print reply_to
+
                 self.comment = Comment(comment=comment, author=author, reply_to=reply_to, ip=self.get_remote_ip())
                 self.session.add(self.comment)
+                self.session.query(Post).filter(Post.id == reply_to).update({'comment_num': Post.comment_num + 1})
+
                 self.session.commit()
 
                 self.set_header("Content-Type", "application/json; charset=UTF-8")
