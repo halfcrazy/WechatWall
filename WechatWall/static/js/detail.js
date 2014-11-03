@@ -1,8 +1,4 @@
-$(function() {
-    set_scroll_notification();
-    var url = window.location.href;
-    var url_parts = url.split('/');
-    var post_id = url_parts[url_parts.length-1];
+function load_comment_post (post_id) {
     //首次加载内容
     $.getJSON("/api/t/"+post_id, function(data) {
         var obj = data;
@@ -10,8 +6,8 @@ $(function() {
             console.log(obj);
             var items = [];
             $.each(obj.comments,function(idx,comment){
-                //comment的id需要处理成线性的
-                var HTML = '<div class="row"><div class="col-md-2"></div><div class="col-md-8"><div class="post">'
+                var HTML = '<div class="row"><div class="col-md-2"></div><div class="col-md-8">'
+                +'<div class="post" '+'data-id="'+(idx+1)+'">'
                 +'<p class="text-left info">'
                 +'#'+(idx+1)
                 +'</p><p class="text-left">'
@@ -27,9 +23,20 @@ $(function() {
         }else{
             return;
         }
-        $(".post-list").prepend(items.join(""));
+
+        $(".post-list").prepend(items.reverse().join(""));
         set_color();
     });
+}
+$(function() {
+    //设置顶部滚动文字
+    set_scroll_notification();
+    //添加回到顶部按钮
+    back_to_top();
+    var url = window.location.href;
+    var url_parts = url.split('/');
+    var post_id = url_parts[url_parts.length-1];
+    load_comment_post(post_id);
 
     $("#submit_btn").click(function() {
         $.post("/api/post",{
@@ -41,6 +48,7 @@ $(function() {
         },function (data,textStatus) {
             console.log(data);
         });
+        load_comment_post(post_id);// oh, it;s dit
         return false;
     });
 });

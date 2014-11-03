@@ -36,40 +36,9 @@ var updater = {
     }
 };
 
-$(function(){
-    //设置顶部滚动文字
-    set_scroll_notification();
-
-    //设置下拉菜单样式
-    //$('select[name="inverse-dropdown"], select[name="inverse-dropdown-optgroup"], select[name="inverse-dropdown-disabled"]').select2({dropdownCssClass: 'select-inverse-dropdown'});
-    $('select[name="category"]').select2({dropdownCssClass: 'select-inverse-dropdown'});
-
-    //初始化category-nav
-    $("#category-nav li").click(function() {
-        if($(this["class"!="active"])){
-            $(this).attr("class","active");
-            $(this).siblings('li').attr("class","");
-        }
-    });
-
-    //添加手势支持,切换分类
-    var myElement = $(".post-list")[0];
-    var mc = new Hammer(myElement);
-    var last_gesture = "";
-    mc.on("panend panleft panright", function(ev) {
-        if(ev.type=="panend"){
-            if(last_gesture=="panright"){
-                $("#category-nav li[class=active]").prev("li").trigger("click");
-            }else if(last_gesture=="panleft"){
-                $("#category-nav li[class=active]").next("li").trigger("click");
-            }
-        }else{
-            last_gesture = ev.type;
-        }
-    });
-
+function load_category(category,page){
     //首次加载内容
-    $.getJSON("/api/w/0", function(data) {
+    $.getJSON("/api/w/"+category+"?p="+page, function(data) {
         var obj = data;
         if(obj.statusCode==200){
             console.log(obj.posts);
@@ -99,6 +68,42 @@ $(function(){
         //设置post块颜色
         set_color();
     });
+}
+$(function(){
+    //设置顶部滚动文字
+    set_scroll_notification();
+    //添加回到顶部按钮
+    back_to_top();
+
+    //设置下拉菜单样式
+    //$('select[name="inverse-dropdown"], select[name="inverse-dropdown-optgroup"], select[name="inverse-dropdown-disabled"]').select2({dropdownCssClass: 'select-inverse-dropdown'});
+    $('select[name="category"]').select2({dropdownCssClass: 'select-inverse-dropdown'});
+
+    //初始化category-nav
+    $("#category-nav li").click(function() {
+        if($(this["class"!="active"])){
+            $(this).attr("class","active");
+            $(this).siblings('li').attr("class","");
+        }
+    });
+
+    //添加手势支持,切换分类
+    var myElement = $(".post-list")[0];
+    var mc = new Hammer(myElement);
+    var last_gesture = "";
+    mc.on("panend panleft panright", function(ev) {
+        if(ev.type=="panend"){
+            if(last_gesture=="panright"){
+                $("#category-nav li[class=active]").prev("li").trigger("click");
+            }else if(last_gesture=="panleft"){
+                $("#category-nav li[class=active]").next("li").trigger("click");
+            }
+        }else{
+            last_gesture = ev.type;
+        }
+    });
+
+    load_category(0,1);
 
     //开启ws
     updater.start();
