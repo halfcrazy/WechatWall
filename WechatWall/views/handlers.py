@@ -22,7 +22,7 @@ class BaseHandler(tornado.web.RequestHandler):
         elif status_code == 500:
             self.render('500.html')
         else:
-            super(RequestHandler, self).write_error(status_code, **kwargs)
+            super(BaseHandler, self).write_error(status_code, **kwargs)
 
     def get_remote_ip(self):
         return self.request.remote_ip
