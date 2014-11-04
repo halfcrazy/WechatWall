@@ -72,7 +72,7 @@
                         <div class="form-group">
                           <select data-toggle="select" id="category" name="category" class="select select-danger mrs mbm" id="category-select">
                             <option value="1">表白</option>
-                            <option value="2">吐槽</option>
+                            <option value="2">树洞</option>
                             <option value="3">心愿</option>
                           </select>
                         </div>
@@ -84,6 +84,7 @@
                       </div>
                       <div class="col-md-4 col-sm-2 col-xs-3">
                         <div class="form-group">
+                        {% raw xsrf_form_html() %}
                           <a id="submit_btn" class="btn btn-info"><i class="Icon Icon--tweet"></i>发布</a>
                         </div>
                       </div>
@@ -101,10 +102,10 @@
       <div class="row">
         <div class="col-md-offset-2">
           <ul class="nav nav-pills" role="tablist">
-            <li role="presentation" class="active"><a href="#">全部</a></li>
-            <li role="presentation"><a href="#">表白</a></li>
-            <li role="presentation"><a href="#">吐槽</a></li>
-            <li role="presentation"><a href="#">心愿</a></li>
+            <li data-category="0" class="active"><a>全部</a></li>
+            <li data-category="1"><a>表白</a></li>
+            <li data-category="2"><a>吐槽</a></li>
+            <li data-category="3"><a>心愿</a></li>
           </ul>
         </div>
       </div>

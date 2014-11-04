@@ -42,6 +42,10 @@ function load_category(category,page){
         var obj = data;
         if(obj.statusCode==200){
             if(obj.posts.length>0){
+                //页面加载动画
+                if(page!=1){
+                    var loadi = layer.load(1, 0);
+                }
                 var items = [];
                 $.each(obj.posts,function(idx,post){
                     //post.category_id,post_id
@@ -73,8 +77,10 @@ function load_category(category,page){
             return;
         }
     });
-}
+};
+
 $(function(){
+    console.log(getCookie("_xsrf"));
     //设置顶部滚动文字
     set_scroll_notification();
     //添加回到顶部按钮
@@ -89,6 +95,11 @@ $(function(){
         if($(this["class"!="active"])){
             $(this).attr("class","active");
             $(this).siblings('li').attr("class","");
+            var category_id = $(this).data("category");
+            $(".post-list").html("");
+            //页面加载动画
+            var loadi = layer.load(1, 0);
+            load_category(category_id,1);         
         }
     });
 
@@ -152,13 +163,12 @@ $(function(){
                     +'</div></div><div class="col-md-2"></div></div>';
                 $(".post-list").prepend(HTML);
                 set_color();
-                layer.msg('发送成功', 2, -1);
+                layer.msg('发送成功', 1, -1);
                 $("#content").val("");
             }
             else{
-                layer.msg('发送失败', 2, -1);
+                layer.msg('发送失败', 1, -1);
             }
-
         });
         //updater.socket.send(JSON.stringify(msg));
         return false;

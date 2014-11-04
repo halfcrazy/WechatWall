@@ -186,3 +186,6 @@ footer, .push {
     line-height: 150%;
     text-align: left;
 }
+#category-nav a:hover {
+  cursor: pointer;
+}
