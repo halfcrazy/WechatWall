@@ -7,7 +7,7 @@ function html_escape(a){
 }
 
 function get_category (category_id) {
-    var category = ['全部','表白','吐槽','心愿'];
+    var category = ['全部','表白','树洞','心愿'];
     return category[category_id];
 }
 function pretty_date(ts) {
@@ -57,6 +57,7 @@ function getCookie(name) {
     return r ? r[1] : undefined;
 }
 
+//由于函数运行在body底部加载完dom后，所以打开时那3个li已经显示出来了，会闪一下然后隐藏，待解决。
 function set_scroll_notification () {
     $("#twitter li:not(:first)").css("display","none");
     var B=$("#twitter li:last");

@@ -76,7 +76,7 @@ $(function() {
         var comment = $("#content").val();
         var author = $("#nickname").val();
         var ts = Date.parse(new Date()); 
-        
+
         $.post("/api/post",{
             _xsrf: getCookie("_xsrf"),
             kind: "comment",
@@ -98,6 +98,7 @@ $(function() {
                     +pretty_date(ts)
                     +'</p>'
                     +'</div></div><div class="col-md-2"></div></div>';
+                $(".post-list").html("");
                 $(".post-list").prepend(HTML);
                 set_color();
                 //这里需要提示用户发送成功
