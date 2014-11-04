@@ -157,8 +157,9 @@ class ApiReceiveHandler(BaseHandler):
                     return
 
                 author = self.get_argument("author", "")
+                # set a default author name
                 if not author.strip():
-                    author = generate_name()
+                    author = u"匿名"
 
                 category = self.get_argument("category", "")
                 if not category.isdigit():
@@ -186,8 +187,10 @@ class ApiReceiveHandler(BaseHandler):
                     return
 
                 author = self.get_argument("author", "")
+                # set a default author name
                 if not author.strip():
-                    author = generate_name()
+                    author = u"匿名"
+
                 reply_to = self.get_argument("reply_to", "")
 
                 self.comment = Comment(comment=comment, author=author, reply_to=reply_to, ip=self.get_remote_ip())
