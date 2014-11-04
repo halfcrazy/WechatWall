@@ -47,11 +47,12 @@ TODO
  * Support sql schema import.
  * Embed AC face to texting. 
  * Frontend interface.(Almost done, some details need to be imporved.)
- * Category nav-pills switch.
- * Use cookie to store author name.
+ * ~~Category nav-pills switch.~~
+ * ~~Use cookie to store author name.~~
  * Find a method to cache the post data. Reduce burden to server.
+ * ~~Ajax loading affet.~~
 
 Issue
 ====
 
- * While on wechat embeded browser, the _csrf cookie seems could not be read. And result the post can't be admitted by server.
+ * ~~While on wechat embeded browser, the _csrf cookie seems could not be read. And result the post can't be admitted by server.~~
