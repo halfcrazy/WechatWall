@@ -80,7 +80,6 @@ function load_category(category,page){
 };
 
 $(function(){
-    console.log(getCookie("_xsrf"));
     //设置顶部滚动文字
     set_scroll_notification();
     //添加回到顶部按钮
@@ -130,6 +129,9 @@ $(function(){
         }
     });
 
+    //设置姓名
+    var author_name = get_author_name();
+    $("#nickname").val(author_name);
     //开启ws
     //updater.start();
 
@@ -165,6 +167,7 @@ $(function(){
                 set_color();
                 layer.msg('发送成功', 1, -1);
                 $("#content").val("");
+                set_author_name(author);
             }
             else{
                 layer.msg('发送失败', 1, -1);

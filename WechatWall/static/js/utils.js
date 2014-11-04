@@ -102,3 +102,16 @@ function back_to_top () {
         return false;
     });
 }
+
+function get_author_name () {
+    if(document.cookie.indexOf("author_name=")!=-1){
+        return unescape(getCookie("author_name"));
+    }
+    return "";
+}
+
+function set_author_name (value) {
+    var exdate=new Date();
+    exdate.setDate(exdate.getDate()+30);
+    document.cookie="author_name=" +escape(value)+";expires="+exdate.toGMTString();
+}

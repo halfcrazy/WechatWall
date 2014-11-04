@@ -65,6 +65,11 @@ $(function() {
     set_scroll_notification();
     //添加回到顶部按钮
     back_to_top();
+
+    //设置姓名
+    var author_name = get_author_name();
+    $("#nickname").val(author_name);
+
     var url = window.location.href;
     var url_parts = url.split('/');
     var post_id = url_parts[url_parts.length-1];
@@ -104,6 +109,7 @@ $(function() {
                 //这里需要提示用户发送成功
                 layer.msg('评论成功', 2, -1);
                 $("#content").val("");
+                set_author_name(author);
             }
             else{
                 layer.msg('评论失败', 2, -1);
