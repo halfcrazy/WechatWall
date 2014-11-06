@@ -20,6 +20,7 @@ require:
 
 * tornado
 * sqlalchemy
+* alembic
 
 python package
 --------------
@@ -51,6 +52,7 @@ TODO
  * ~~Use cookie to store author name.~~
  * Find a method to cache the post data. Reduce burden to server.
  * ~~Ajax loading affet.~~
+ * Admin page
 
 Issue
 ====
