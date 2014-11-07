@@ -44,7 +44,7 @@ TODO
 
  * ~~Recode click number.~~
  * 限制发送频率
- * 做心跳检测客户端状态，适当断开连接，节省资源
+ * ~~做心跳检测客户端状态，适当断开连接，节省资源(currently disable the ws function)~~
  * Support sql schema import.
  * Embed AC face to texting. 
  * Frontend interface.(Almost done, some details need to be imporved.)
